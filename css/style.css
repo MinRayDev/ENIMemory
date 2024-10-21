@@ -1,0 +1,60 @@
+.hide {
+    display: none;
+}
+
+body {
+    background-color: #0d1117;
+    font-family: 'Segoe UI', sans-serif;
+    color: azure;
+    padding: 0;
+    margin: 0;
+}
+
+a:link, a:visited {
+    color: azure;
+    text-decoration: none;
+}
+
+nav {
+    background-color: #010409;
+    display: flex;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+nav > div {
+    padding: 0.6rem 0 1rem;
+    margin-top: 0.5rem;
+}
+
+nav a {
+    border-radius: 0.35rem;
+    padding: 0.5rem;
+}
+
+nav a:hover {
+    background-color: #15191f;
+    cursor: pointer;
+
+}
+
+nav > div.selected {
+    border-bottom: 2px solid #cf3777;
+    padding-bottom: 0.5em;
+}
+
+
+@media (min-width: 769px) {
+    nav {
+        gap: 1rem;
+        padding: 0 3rem;
+        align-items: normal;
+        justify-content: normal;
+    }
+    nav > div {
+        padding: 0.6rem 0.75rem 1rem;
+    }
+}

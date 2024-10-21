@@ -1,0 +1,12 @@
+{
+  "title": "Bienvenue sur le site de Memory de l'ENI.",
+  "sub_title": "Venez jouer avec nous et faites le meilleur score possible.",
+  "rules_title": "Règles du jeu :",
+  "rules": [
+    "Retournez 2 cartes. Si les images sont identiques, le jeu laisse les cartes visibles.",
+    "Si les images sont différentes, les cartes se retournent faces cachées là où elles étaient.",
+    "La partie est terminée lorsque toutes les cartes ont été assemblées par paires."
+  ],
+  "image_path": "./resources/assets/memory_detail.png",
+  "description": "Si vous voulez vous souvenir de votre score. Inscrivez-vous via le formulaire. Le jeu garde les <strong>5 meilleurs</strong> scores.<br> Si vous voulez relancer une partie cliquez sur la <strong>barre d'espace</strong>."
+}
