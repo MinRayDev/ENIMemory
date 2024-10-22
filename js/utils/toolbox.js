@@ -1,7 +1,7 @@
 /**
  * Gets the name of the currently loaded HTML file.
  *
- * Solution from: https://stackoverflow.com/questions/16611497/how-can-i-get-the-name-of-an-html-page-in-javascript
+ * Solution inspired by: https://stackoverflow.com/questions/16611497/how-can-i-get-the-name-of-an-html-page-in-javascript
  *
  * @returns {string} The name of the currently loaded HTML file.
  *

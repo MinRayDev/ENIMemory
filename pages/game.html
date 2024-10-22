@@ -1,10 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Title</title>
+		<title>Document</title>
+		<meta name="viewport"
+			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../css/custom/game.css">
+		<script type="module" src="../js/app.js" defer></script>
 	</head>
 	<body>
-
+		<nav>
+			<div id="nav-index"><a href="../index.html">Accueil</a></div>
+			<div id="nav-register"><a href="./register.html">S'inscrire</a></div>
+			<div id="nav-login"><a>Se connecter</a></div>
+			<div id="nav-profile"><a>Profil</a></div>
+			<div id="nav-game"><a>Jouer</a></div>
+		</nav>
+		<main>
+			<div id="win-modal-container">
+				<section id="win-modal">
+					<div id="win-modal-content">
+						<h1>Félicitations !</h1>
+						<p>Vous avez réussi à résoudre le jeu !</p>
+						<p>Appuyez sur `espace` pour recommencer.</p>
+						<button id="win-modal-close">Fermer</button>
+					</div>
+				</section>
+			</div>
+			<section id="cards">
+			</section>
+		</main>
 	</body>
 </html>

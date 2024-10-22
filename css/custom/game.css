@@ -1,0 +1,152 @@
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-container {
+    max-width: 100vw;
+    max-height: 20vh;
+    min-height: 20vh;
+    box-sizing: border-box;
+    margin: 2vh 2.5vw;
+    border-radius: .7rem;
+}
+
+.card-container:hover {
+    cursor: pointer;
+    background-color: #15191f;
+}
+
+.card-hide {
+    background-color: #010409;
+}
+
+.card-hide img {
+    opacity: 0;
+}
+
+#cards img {
+    max-width: 100vw;
+    min-width: 10vw;
+    max-height: 20vh;
+    min-height: 20vh;
+    border-radius: .5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.card-selected {
+    background-color: #15191f;
+}
+
+.card-found {
+    outline: 0.2rem solid #97db6d;
+    animation: foundAnimation 0.7s ease forwards;
+}
+
+img.showAnimation {
+    animation: appearAnimation 0.7s ease;
+}
+
+img.hideAnimation {
+    animation: appearAnimation 0.7s ease reverse;
+}
+
+div.showAnimation {
+    animation: coverAnimation 0.7s ease;
+}
+
+div.hideAnimation {
+    animation: coverAnimation 0.7s ease reverse;
+}
+
+@keyframes appearAnimation {
+    from {
+        transform: rotateY(-180deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotateY(0deg);
+        opacity: 100%;
+
+    }
+}
+
+@keyframes coverAnimation {
+    from {
+        background-color: #010409;
+    }
+    to {
+        background-color: transparent;
+    }
+}
+
+@keyframes foundAnimation {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 60%;
+    }
+}
+
+
+#win-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#win-modal {
+    background-color: #151b23;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #313840;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 4vw 40vw;
+    padding: 2vh 0.1vw 1vh;
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+#win-modal.show {
+    opacity: 100%;
+    transform: translateY(0); /* Animate to its original position */
+}
+
+#win-modal.hide {
+    opacity: 0;
+    transform: translateY(-50px); /* Animate back up and fade out */
+}
+
+#win-modal-content {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1.5vw 2vh;
+}
+
+#win-modal button {
+    margin: 0.75rem auto 0;
+    background-color: #cf3777;
+    border-radius: 0.25vw;
+    border: 0;
+    height: 2rem;
+    color: azure;
+    font-weight: bold;
+    width: 15vw;
+}
+
+#win-modal button:hover {
+    cursor: pointer;
+    background-color: #d7417d;
+}

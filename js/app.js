@@ -1,5 +1,6 @@
 import {getCurrentHtml} from "./utils/toolbox.js";
-import {load} from "./custom/index_page.js";
+import {load as loadIndex} from "./custom/index_page.js";
+import {load as loadGame} from "./custom/game_page.js";
 
 
 function init() {
@@ -10,7 +11,12 @@ function init() {
     }
     switch (currentHtml) {
         case "index": {
-            load()
+            loadIndex()
+            break;
+        }
+        case "game": {
+            loadGame()
+            break;
         }
     }
 }
