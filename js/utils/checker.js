@@ -106,8 +106,43 @@ function checkPasswords(password, passwordConfirmation) {
     return checkPassword(password);
 }
 
+
+function checkRegister() {
+    const $usernameInput = document.getElementById("username");
+    const $emailInput = document.getElementById("email");
+    const $passwordInput = document.getElementById("password");
+    const $confirmPasswordInput = document.getElementById("confirm-password");
+
+    const usernameValue = $usernameInput.value.trim()
+    const emailValue = $emailInput.value.trim()
+    const passwordValue = $passwordInput.value.trim()
+    const confirmPasswordValue = $confirmPasswordInput.value.trim()
+
+    const response = checkPasswords(passwordValue, confirmPasswordValue)
+    if(response) {
+        return response;
+    }
+
+    const toCheck = {
+        username: [usernameValue, checkUsername],
+        email: [emailValue, checkEmail],
+        password: [passwordValue, checkPassword],
+    }
+
+    for(const [value, checker] of Object.values(toCheck)) {
+        const response = checker(value)
+        if(response) {
+            return response;
+        }
+    }
+    return undefined;
+}
+
+
 export {
     checkUsername,
     checkEmail,
-    checkPasswords
+    checkPassword,
+    checkPasswords,
+    checkRegister
 }

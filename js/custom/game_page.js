@@ -1,5 +1,6 @@
 import {doubleCards, GameCard, loadSet, shuffle} from "../core/game_set.js";
 import {game} from "../core/game.js";
+import {closeModal, openModal} from "../utils/modal.js";
 
 
 function win() {
@@ -7,10 +8,7 @@ function win() {
     if(!$main) {
         return
     }
-    document.getElementById("win-modal-container").style.display = "flex";
-    setTimeout(() => {
-        document.getElementById("win-modal").classList.add("show");
-    }, 10)
+    openModal()
     console.log("Win !!!")
 }
 
@@ -35,14 +33,9 @@ export function load() {
     for(const card of cards) {
         game.grid[card.id] = card;
         document.getElementById("cards").insertAdjacentHTML("beforeend", `<div class="card-container card-hide"><img src="${card.path}" alt="${card.id}" id="${card.id}" draggable="false"></div>`);
-        const $closeModal = document.getElementById("win-modal-close");
+        const $closeModal = document.getElementById("modal-close");
         $closeModal.addEventListener("click", () => {
-            const $modal = document.getElementById("win-modal")
-            $modal.classList.remove("show");
-            $modal.classList.add("hide");
-            setTimeout(() => {
-                $modal.parentElement.style.display = "none";
-            }, 500);
+            closeModal()
         })
         const $card = document.getElementById(card.id);
         $card.addEventListener("click", () => {
