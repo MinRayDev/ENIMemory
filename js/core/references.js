@@ -34,7 +34,7 @@ const gameSets = {
         "count": 10,
         "display_name": "Animaux de Compagnie"
     },
-    "vegetables": { // Pour le début
+    "vegetables": {
         "ext": "svg",
         "count": 6,
         "display_name": "Légumes"

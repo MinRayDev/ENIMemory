@@ -1,9 +1,42 @@
 import {getId, isConnected} from "../core/client.js";
 import {openModal} from "../utils/modal.js";
-import {changeUserSet, User} from "../core/users.js";
+import {editUser, User} from "../core/users.js";
 import {gameSets} from "../core/references.js";
-import {setLocalStorage} from "../utils/storage.js";
+import {computeGrid} from "../utils/toolbox.js";
 
+
+function loadSize(eventLoad = true) {
+    const user = User.getUserById(getId());
+    const $sizeSelector = document.getElementById("size-selector");
+    const grid = computeGrid(gameSets[user.set].count*2);
+    $sizeSelector.innerHTML = "";
+    for (const value of grid) {
+        const $option = document.createElement("option");
+        $option.value = JSON.stringify(value);
+        console.log($option.value)
+        let supp = "";
+        if (value[2] > 0) {
+            supp = ` (+${value[2]})`;
+        }
+        $option.textContent = `${value[0]}x${value[1]}${supp}`;
+        $sizeSelector.appendChild($option);
+    }
+    if (!user.size) {
+        $sizeSelector.value = JSON.stringify(grid[0]);
+        console.log("Auto set", $sizeSelector.value)
+        editUser(getId(), "size", $sizeSelector.value);
+    }
+    if(!eventLoad) {
+        if (user.size) {
+            console.log("Size from user", user.size);
+            $sizeSelector.value = user.size;
+        }
+        $sizeSelector.addEventListener("change", () => {
+            const value = $sizeSelector.value;
+            editUser(getId(), "size", value);
+        });
+    }
+}
 
 function load() {
     if(!isConnected()) {
@@ -44,9 +77,11 @@ function load() {
     $setSelector.value = user.set
     $previewImage.src = `../resources/assets/cards/previews/${user.set}.png`;
     $setSelector.addEventListener("change", () => {
-        changeUserSet(getId(), $setSelector.value);
+        editUser(getId(), "set", $setSelector.value);
         $previewImage.src =`../resources/assets/cards/previews/${$setSelector.value}.png`;
-    })
+        loadSize();
+    });
+    loadSize(false);
 }
 
 export {load}

@@ -6,6 +6,7 @@ class User {
         this.name = name;
         this.email = email;
         this.set = set
+        this.size = null;
     }
 
     toJson() {
@@ -13,12 +14,13 @@ class User {
             id: this.id,
             name: this.name,
             email: this.email,
-            set: this.set
+            set: this.set,
+            size: this.size
         }
     }
 
     static parseUser(jsonObject) {
-        return new User(jsonObject["id"], jsonObject["name"], jsonObject["email"], jsonObject["set"]);
+        return new User(jsonObject["id"], jsonObject["name"], jsonObject["email"], jsonObject["set"], jsonObject["size"]);
     }
 
     static createId(name) {
@@ -57,14 +59,15 @@ function addUser(user, password) {
     return response;
 }
 
-function changeUserSet(userId, newSet) {
+function editUser(userId, key, value) {
+    console.log("Setting", key, value)
     let localUsers = getLocalStorage("users", JSON.parse);
     // From Sonar
     if (!localUsers?.[userId]) {
         return false;
     }
     const userJson = localUsers[userId];
-    userJson.set = newSet;
+    userJson[key] = value
     localUsers[userId] = userJson;
     setLocalStorage("users", localUsers, JSON.stringify);
     return true;
@@ -92,6 +95,6 @@ function login(email, password) {
 export {
     User,
     addUser,
-    changeUserSet,
+    editUser,
     login
 }
