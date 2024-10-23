@@ -6,6 +6,24 @@
     justify-content: center;
 }
 
+.historyGame {
+    max-width: 10vw;
+    max-height: 5vh;
+    border-radius: 0.5rem;
+    border: 0.0625rem solid var(--border);
+    margin: 0.5rem 0;
+    padding: 0.3rem 0.5rem ;
+}
+
+.historyGame:hover {
+    background-color: var(--surface);
+    cursor: pointer;
+}
+
+.historyGame h4 {
+    margin: 0;
+}
+
 #set-preview {
     max-width: 40vw;
     max-height: 75vh;
@@ -44,7 +62,7 @@
         align-items: center;
         padding-top: 2rem;
     }
-    #profile > section:first-child label {
+    #profile > section:first-child div {
         width: 100%;
         display: flex;
         justify-content: flex-end;

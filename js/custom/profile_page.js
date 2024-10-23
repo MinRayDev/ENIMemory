@@ -2,6 +2,7 @@ import {getId, isConnected} from "../core/client.js";
 import {editUser, User} from "../core/users.js";
 import {gameSets} from "../core/references.js";
 import {computeGrid, redirect} from "../utils/toolbox.js";
+import {closeModal, openModal} from "../components/modal.js";
 
 
 function loadSize(eventLoad = true) {
@@ -69,10 +70,24 @@ function load() {
     if (!userHistory) {
         userHistory = [];
     }
-    Object.values(userHistory).slice(0, 4).forEach(value => {
+    Object.values(userHistory).slice(0, 8).forEach(value => {
         const $div = document.createElement("div");
-        $div.innerHTML = `<div class="historyGame"><h4>Score ${value.score}</h4><h4>${value.date}</h4><h6>${value.set}</h6><h7>${value.size}</h7></div>`;
+        $div.classList.add("historyGame");
+        $div.innerHTML = `<h4>Score ${value.score}</h4><h4>${value.date}</h4>`;
         $history.appendChild($div);
+        $div.addEventListener("click", () => {
+            let supp = "";
+            if (value.size[2] > 0) {
+                supp = ` (+${value.size[2]})`;
+            }
+            openModal(
+                `Partie de ${user.name} le ${value.date}`,
+                `Score: ${value.score}`,
+                `Cartes: ${gameSets[value.set]["display_name"]}, Taille: ${value.size[0]}x${value.size[1]}${supp}`,
+                "Fermer",
+                closeModal
+            )
+        });
     });
 }
 
