@@ -12,5 +12,6 @@ function isConnected() {
 
 function saveToken(token) { sessionStorage.setItem("token", token); }
 
+function disconnect() { sessionStorage.removeItem("token"); }
 
-export {getId, isConnected, saveToken}
+export {getId, isConnected, saveToken, disconnect}

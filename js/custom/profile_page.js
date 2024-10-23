@@ -1,4 +1,4 @@
-import {getId, isConnected} from "../core/client.js";
+import {disconnect, getId, isConnected} from "../core/client.js";
 import {editUser, User} from "../core/users.js";
 import {gameSets} from "../core/references.js";
 import {computeGrid, redirect} from "../utils/toolbox.js";
@@ -41,6 +41,13 @@ function load() {
     if(!isConnected()) {
         redirect("login")
     }
+    const $disconnectButton = document.getElementById("disconnect");
+    if(isConnected()) {
+        $disconnectButton.addEventListener("click", () => {
+            disconnect();
+            redirect("login")
+        });
+    }
     document.querySelector("#profile > section:first-child").style.display = "flex";
     document.querySelector("#profile > section:nth-child(2)").style.display = "block";
     const user = User.getUserById(getId());
@@ -70,7 +77,7 @@ function load() {
     if (!userHistory) {
         userHistory = [];
     }
-    Object.values(userHistory).slice(0, 8).forEach(value => {
+    userHistory.slice(0, 8).forEach(value => {
         const $div = document.createElement("div");
         $div.classList.add("historyGame");
         $div.innerHTML = `<h4>Score ${value.score}</h4><h4>${value.date}</h4>`;

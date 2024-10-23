@@ -37,7 +37,7 @@ const gameSets = {
     "vegetables": {
         "ext": "svg",
         "count": 6,
-        "display_name": "Légumes"
+        "display_name": "Légumes et Fruits"
     }
 }
 

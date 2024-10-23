@@ -46,6 +46,13 @@
     outline-style: none;
 }
 
+hr {
+    height: 0.15rem;
+    background-color: var(--border);
+    border-radius: 0.3rem;
+    border: none;
+}
+
 @media (min-width: 769px) {
     main {
         margin: 3vw 20vw;
@@ -70,6 +77,25 @@
     #profile > section:nth-child(2) {
         width: 22.5%;
         margin-left: 2.5%;
+        display: flex;
+    }
+
+
+
+    #profile button {
+        width: 100%;
+        margin: 0.5rem 0 0;
+        background-color: var(--overlay);
+        border-radius: 0.25vw;
+        border: 0;
+        height: 2rem;
+        color: var(--text);
+        font-weight: bold;
+    }
+
+    #profile button:hover {
+        background-color: var(--overlay-hover);
+        cursor: pointer;
     }
 
     #profile > section:nth-child(2) > h2  {
@@ -77,9 +103,10 @@
     }
     #profile > section:nth-child(2) > h3 {
         margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
         font-style: italic;
         font-weight: normal;
-        color: darkgray;
+        color: var(--subtext);
     }
 
 }
