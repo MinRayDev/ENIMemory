@@ -35,7 +35,6 @@ function load() {
     $email.textContent = user.email;
     const $setSelector = document.getElementById("set-selector");
     const $previewImage = document.getElementById("set-preview");
-    console.log(user.set)
     for (const [key, value] of Object.entries(gameSets)) {
         const $option = document.createElement("option");
         $option.value = key
@@ -45,8 +44,7 @@ function load() {
     $setSelector.value = user.set
     $previewImage.src = `../resources/assets/cards/previews/${user.set}.png`;
     $setSelector.addEventListener("change", () => {
-        console.log($setSelector.value); // This is the entire <option> element
-        // changeUserSet(getId(), $setSelector.id);
+        changeUserSet(getId(), $setSelector.value);
         $previewImage.src =`../resources/assets/cards/previews/${$setSelector.value}.png`;
     })
 }

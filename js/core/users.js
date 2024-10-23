@@ -42,8 +42,6 @@ function addUser(user, password) {
     }
     let response;
     Object.keys(localUsers).forEach((key) => {
-        console.log("Names", localUsers[key].name, user.name)
-        console.log("Mails", localUsers[key].email, user.email)
         if(localUsers[key].name === user.name) {
             response = "Ce nom est déjà utilisé."
         }
@@ -66,7 +64,6 @@ function changeUserSet(userId, newSet) {
         return false;
     }
     const userJson = localUsers[userId];
-    console.log(userJson)
     userJson.set = newSet;
     localUsers[userId] = userJson;
     setLocalStorage("users", localUsers, JSON.stringify);
@@ -82,8 +79,6 @@ function login(email, password) {
     let user;
     Object.keys(localUsers).forEach((key) => {
         const localUser = localUsers[key];
-        console.log(localUser.email, email)
-        console.log(localUser.password, password)
         if(localUser.email === email) {
             if(localUser.password === password) {
                 user = User.parseUser(localUser);

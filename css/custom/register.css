@@ -1,6 +1,14 @@
+:root {
+    --shake: 5px;
+}
+
 h1 {
     text-align: center;
     margin: 3.5vh;
+}
+
+body {
+    height: 100vh;
 }
 
 #register-form, #login-form {
@@ -87,7 +95,7 @@ h1 {
 }
 
 .score-item {
-    text-align: center; /* Centers the text under the hr */
+    text-align: center;
 }
 
 .password-score hr {
@@ -101,4 +109,21 @@ h1 {
 
 #weak-score {
     background-color: #d75c13;
+}
+
+
+/* Solution from https://stackoverflow.com/questions/49469344/using-negative-css-custom-properties */
+@keyframes shake {
+    0% { transform: translate(var(--shake), var(--shake)); }
+    25% { transform: translate(calc(var(--shake) * -1), calc(var(--shake) * -1)); }
+    50% { transform: translate(var(--shake), var(--shake)); }
+    75% { transform: translate(calc(var(--shake) * -1), calc(var(--shake) * -1)); }
+    100% { transform: translate(0, 0); }
+}
+
+.shake {
+    animation: shake 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 2;
+    overflow: hidden;
 }

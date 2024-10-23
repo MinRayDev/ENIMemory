@@ -112,8 +112,6 @@ function checkPasswords(password, passwordConfirmation) {
 
 
 function getPasswordScore(password) {
-    console.log(numberPattern.test(password))
-    console.log(specialCharacters.test(password))
     if(password.length > 9 && numberPattern.test(password) && specialCharacters.test(password)) {
         return 3;
     }

@@ -114,6 +114,13 @@ function load() {
             event.preventDefault();
             const response = checkRegister();
             if(typeof response === "string") {
+                const $body = document.querySelector("body");
+                $body.classList.add("shake");
+                $body.addEventListener('animationend', () => {
+                    $body.classList.remove('shake');
+                }, { once: true });
+                document.getElementById("modal-title").textContent = "Attention !";
+                document.getElementById("modal-subtitle").textContent = "Vous n'avez pas pu vous inscrire.";
                 const $modalMessage = document.getElementById("modal-message");
                 if($modalMessage) {
                     $modalMessage.textContent = response;
@@ -124,10 +131,15 @@ function load() {
             const newUser = new User(User.createId(response.username), response.username, response.email);
             const addResponse = addUser(newUser, response.passwords);
             if(typeof addResponse === "string") {
+                const $body = document.querySelector("body");
+                $body.classList.add("shake");
+                $body.addEventListener('animationend', () => {
+                    $body.classList.remove('shake');
+                }, { once: true });
                 const $modalMessage = document.getElementById("modal-message");
                 if($modalMessage) {
                     document.getElementById("modal-title").textContent = "Attention !";
-                    document.getElementById("modal-subtitle").textContent = "Vous n'avez pas pu vous connecter.";
+                    document.getElementById("modal-subtitle").textContent = "Vous n'avez pas pu vous inscrire.";
                     $modalMessage.textContent = addResponse;
                 }
                 openModal();

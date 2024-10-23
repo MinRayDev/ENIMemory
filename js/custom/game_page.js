@@ -11,7 +11,6 @@ function win() {
         return
     }
     openModal()
-    console.log("Win !!!")
 }
 
 export function load() {
@@ -19,7 +18,6 @@ export function load() {
         if (event.code === "Space") {
             event.preventDefault();
             location.reload();
-            console.log("Spacebar press prevented!");
         }
     });
     const user = User.getUserById(getId())
@@ -38,7 +36,7 @@ export function load() {
         document.getElementById("cards").insertAdjacentHTML("beforeend", `<div class="card-container card-hide"><img src="${card.path}" alt="${card.id}" id="${card.id}" draggable="false"></div>`);
         const $closeModal = document.getElementById("modal-close");
         $closeModal.addEventListener("click", () => {
-            closeModal()
+            location.reload();
         })
         const $card = document.getElementById(card.id);
         $card.addEventListener("click", () => {
