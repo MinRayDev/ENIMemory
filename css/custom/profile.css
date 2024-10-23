@@ -1,4 +1,4 @@
-main {
+#profile {
     display: flex;
     padding: 0.5vw 3vw;
     margin: auto;
@@ -12,52 +12,52 @@ main {
     border-radius: 0.5rem;
 }
 
-main > section:first-child select:hover {
+#profile > section:first-child select:hover {
     cursor: pointer;
+    background-color: var(--surface);
 }
 
-main > section:first-child select {
+#profile > section:first-child select {
     margin-top: 1rem;
     padding: 0.7rem 0 0.75rem 0.5rem;
     width: 25%;
-    background-color: #262c36;
+    background-color: var(--surface);
     color: azure;
-    border: 0.1rem solid #3d444d;
+    border: 0.1rem solid var(--border);
     border-radius: 0.5rem;
+    outline-style: none;
 }
 
 @media (min-width: 769px) {
     main {
         margin: 3vw 20vw;
     }
-    main > section {
+    section {
         padding: 0.75rem 1.5rem;
-    }
-    main > section:first-child {
-        border: 0.0625rem solid #3d444d;
+        border: 0.0625rem solid var(--border);
         border-radius: 0.5rem;
+    }
+    #profile > section:first-child {
         width: 72.5%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding-top: 2rem;
     }
-    main > section:first-child label {
+    #profile > section:first-child label {
         width: 100%;
         display: flex;
         justify-content: flex-end;
     }
-    main > section:last-child {
-        border: 0.0625rem solid #3d444d;
-        border-radius: 0.5rem;
+    #profile > section:nth-child(2) {
         width: 22.5%;
         margin-left: 2.5%;
     }
 
-    main > section:last-child > h2  {
+    #profile > section:nth-child(2) > h2  {
         margin: 0;
     }
-    main > section:last-child > h3 {
+    #profile > section:nth-child(2) > h3 {
         margin-top: 0.25rem;
         font-style: italic;
         font-weight: normal;

@@ -1,5 +1,5 @@
 import {getId, isConnected} from "../core/client.js";
-import {openModal} from "../utils/modal.js";
+import {openModal} from "../components/modal.js";
 import {editUser, User} from "../core/users.js";
 import {gameSets} from "../core/references.js";
 import {computeGrid} from "../utils/toolbox.js";
@@ -59,8 +59,8 @@ function load() {
         }, (start+1) * 1000);
         return;
     }
-    document.querySelector("main > section:first-child").style.display = "flex";
-    document.querySelector("main > section:last-child").style.display = "block";
+    document.querySelector("#profile > section:first-child").style.display = "flex";
+    document.querySelector("#profile > section:nth-child(2)").style.display = "block";
     const user = User.getUserById(getId());
     const $username = document.getElementById("username");
     const $email = document.getElementById("email");
@@ -82,6 +82,17 @@ function load() {
         loadSize();
     });
     loadSize(false);
+    const $history = document.querySelector("#history");
+    $history.style.display = "block";
+    let userHistory = user.history;
+    if (!userHistory) {
+        userHistory = [];
+    }
+    Object.values(userHistory).slice(0, 4).forEach(value => {
+        const $div = document.createElement("div");
+        $div.innerHTML = `<div class="historyGame"><h4>Score ${value.score}</h4><h4>${value.date}</h4><h6>${value.set}</h6><h7>${value.size}</h7></div>`;
+        $history.appendChild($div);
+    });
 }
 
 export {load}

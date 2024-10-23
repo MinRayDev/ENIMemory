@@ -9,20 +9,17 @@
 		<script type="module" src="js/app.js" defer></script>
 	</head>
 	<body>
-		<nav>
-			<div id="nav-index"><a href="index.html">Accueil</a></div>
-			<div id="nav-register"><a href="./pages/register.html">S'inscrire</a></div>
-			<div id="nav-login"><a href="./pages/login.html">Se connecter</a></div>
-			<div id="nav-profile"><a href="./pages/profile.html">Profil</a></div>
-			<div id="nav-game"><a href="./pages/game.html">Jouer</a></div>
-		</nav>
 		<main>
-			<h1 class="hide config-load" id="title">Title</h1>
-			<h2 class="hide config-load" id="sub_title">Subtitle</h2>
-			<h2 class="hide config-load" id="rules_title">Rules Title</h2>
-			<ul class="hide config-load" id="rules"></ul>
-			<img class="hide config-load" id="image_path" alt="Grid Example" src="">
-			<p class="hide config-load" id="description">Description</p>
+			<h1 id="title">Bienvenue sur le site de Memory de l'ENI.</h1>
+			<h2 id="sub_title">Venez jouer avec nous et faites le meilleur score possible.</h2>
+			<h2 id="rules_title">Règles du jeu :</h2>
+			<ul id="rules">
+				<li>Retournez 2 cartes. Si les images sont identiques, le jeu laisse les cartes visibles.</li>
+				<li>Si les images sont différentes, les cartes se retournent faces cachées là où elles étaient.</li>
+				<li>La partie est terminée lorsque toutes les cartes ont été assemblées par paires.</li>
+			</ul>
+			<img id="image_path" alt="Grid Example" src="assets/example.png">
+			<p id="description">Si vous voulez vous souvenir de votre score. Inscrivez-vous via le formulaire. Le jeu garde les <strong>5 meilleurs</strong> scores.<br> Si vous voulez relancer une partie cliquez sur la <strong>barre d'espace</strong>.</p>
 		</main>
 	</body>
 </html>

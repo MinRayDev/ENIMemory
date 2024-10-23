@@ -12,9 +12,9 @@ body {
 }
 
 #register-form, #login-form {
-    background-color: #151b23;
+    background-color: var(--surface);
     border-radius: 0.5rem;
-    border: 0.1rem solid #313840;
+    border: 0.1rem solid var(--border);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,11 +34,11 @@ body {
 }
 
 .form-group input {
-    background-color: #0d1117;
+    background-color: var(--base);
     border-radius: 0.25vw;
-    border: 0.1rem solid #313840;
+    border: 0.1rem solid var(--border);
     height: 2rem;
-    color: azure;
+    color: var(--text);
     padding-left: 0.75rem;
     padding-right: 0.75rem;
 }
@@ -61,30 +61,30 @@ body {
 
 .form-group input:focus {
     outline: none;
-    border-color: #cf3777;
+    border-color: var(--overlay);
 }
 
 .form-group button {
     margin: 0.5rem 0 0;
-    background-color: #cf3777;
+    background-color: var(--overlay);
     border-radius: 0.25vw;
     border: 0;
     height: 2rem;
-    color: azure;
+    color: var(--text);
     font-weight: bold;
 }
 
 .form-group button:hover {
-    background-color: #d7417d;
+    background-color: var(--overlay-hover);
     cursor: pointer;
 }
 
 .error-message {
-    color: #f85149;
+    color: var(--error);
 }
 
 .success-message {
-    color: #73c275;
+    color: var(--succes);
 }
 
 .password-score {
@@ -102,7 +102,7 @@ body {
     width: 5rem;
     height: 0.3rem;
     border-radius: 0.3rem;
-    background-color: #0d1117;
+    background-color: var(--base);
     border: none;
     margin: 0;
 }

@@ -9,13 +9,6 @@
 		<script type="module" src="../js/app.js" defer></script>
 	</head>
 	<body>
-		<nav>
-			<div id="nav-index"><a href="../index.html">Accueil</a></div>
-			<div id="nav-register"><a href="./register.html">S'inscrire</a></div>
-			<div id="nav-login"><a href="./login.html">Se connecter</a></div>
-			<div id="nav-profile"><a href="./profile.html">Profil</a></div>
-			<div id="nav-game"><a href="./game.html">Jouer</a></div>
-		</nav>
 		<div class="modal-container">
 			<section class="modal">
 				<div class="modal-content">
@@ -26,19 +19,22 @@
 			</section>
 		</div>
 		<main>
-			<section class="hide">
-				<img alt="Card Set Preview" src="" id="set-preview"/>
-				<label for="set-selector">
-					<select id="set-selector"></select>
-				</label>
-				<label for="size-selector">
-					<select id="size-selector"></select>
-				</label>
-			</section>
-			<section class="hide">
-				<h2 id="username">username</h2>
-				<h3 id="email">email</h3>
-			</section>
+			<div id="profile">
+				<section class="hide">
+					<img alt="Card Set Preview" src="" id="set-preview"/>
+					<label for="set-selector">
+						<select id="set-selector"></select>
+					</label>
+					<label for="size-selector">
+						<select id="size-selector"></select>
+					</label>
+				</section>
+				<section class="hide">
+					<h2 id="username">username</h2>
+					<h3 id="email">email</h3>
+					<div id="history"></div>
+				</section>
+			</div>
 		</main>
 	</body>
 </html>

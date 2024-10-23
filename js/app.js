@@ -1,20 +1,19 @@
 import {getCurrentHtml} from "./utils/toolbox.js";
-import {load as loadIndex} from "./custom/index_page.js";
 import {load as loadGame} from "./custom/game_page.js";
 import {load as loadRegister} from "./custom/register_page.js";
 import {load as loadLogin} from "./custom/login_page.js";
 import {load as loadProfile} from "./custom/profile_page.js";
+import {displayNav} from "./components/nav.js";
 
 
 function init() {
     const currentHtml = getCurrentHtml();
-    const $navSelect = document.getElementById(`nav-${currentHtml}`);
-    if ($navSelect) {
-        $navSelect.classList.add("selected");
-    }
+    let prefixIndex = "../";
+    let prefixPages = "./";
     switch (currentHtml) {
         case "index": {
-            loadIndex();
+            prefixIndex = "./";
+            prefixPages = "./pages/";
             break;
         }
         case "game": {
@@ -34,5 +33,7 @@ function init() {
             break;
         }
     }
+    displayNav(currentHtml, prefixIndex, prefixPages);
+
 }
 document.addEventListener("DOMContentLoaded", init);

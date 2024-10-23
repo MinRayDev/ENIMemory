@@ -1,7 +1,7 @@
 #tries {
-    background-color: #151b23;
+    background-color: var(--surface);
     border-radius: 0.5rem;
-    border: 0.1rem solid #313840;
+    border: 0.1rem solid var(--border);
     margin: 2.5vh 2vw 2.5vh 87.5vw;
     padding: 2vh;
 }
@@ -28,11 +28,11 @@
 
 .card-container:hover {
     cursor: pointer;
-    background-color: #15191f;
+    background-color: var(--crust-hover);
 }
 
 .card-hide {
-    background-color: #010409;
+    background-color: var(--crust);
 }
 
 .card-hide img {
@@ -50,11 +50,11 @@
 }
 
 .card-selected {
-    background-color: #15191f;
+    background-color: var(--crust-hover);
 }
 
 .card-found {
-    outline: 0.2rem solid #97db6d;
+    outline: 0.2rem solid var(--succes);
     animation: foundAnimation 0.7s ease forwards;
 }
 
@@ -88,7 +88,7 @@ div.hideAnimation {
 
 @keyframes coverAnimation {
     from {
-        background-color: #010409;
+        background-color: var(--crust);
     }
     to {
         background-color: transparent;

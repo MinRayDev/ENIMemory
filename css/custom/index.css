@@ -15,7 +15,7 @@ main img {
 
 @media (min-width: 769px) {
     main {
-        border: 0.0625rem solid #3d444d;
+        border: 0.0625rem solid var(--border);
         border-radius: 0.5rem;
         padding: 1vw 3vw;
         margin: 3vw 20vw;

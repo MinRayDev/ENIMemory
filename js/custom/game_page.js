@@ -1,6 +1,6 @@
 import {doubleCards, GameCard, loadSet, shuffle} from "../core/game_set.js";
 import {game, saveGame} from "../core/game.js";
-import {openModal} from "../utils/modal.js";
+import {openModal} from "../components/modal.js";
 import {getId} from "../core/client.js";
 import {User} from "../core/users.js";
 import {computeGrid} from "../utils/toolbox.js";

@@ -6,7 +6,7 @@ import {
     checkUsername,
     getPasswordScore
 } from "../utils/checker.js";
-import {closeModal, openModal} from "../utils/modal.js";
+import {closeModal, openModal} from "../components/modal.js";
 import {addUser, User} from "../core/users.js";
 import {redirect} from "../utils/toolbox.js";
 

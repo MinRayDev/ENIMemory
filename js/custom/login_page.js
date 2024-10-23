@@ -1,16 +1,12 @@
-import {closeModal, openModal} from "../utils/modal.js";
+import {closeModal, openModal} from "../components/modal.js";
 import {login} from "../core/users.js";
-import {getId, saveToken} from "../core/client.js";
+import {saveToken} from "../core/client.js";
 import {redirect} from "../utils/toolbox.js";
 
 
 function load() {
     const $form = document.getElementById("login-form");
     if ($form) {
-        const $closeModal = document.getElementById("modal-close");
-        $closeModal.addEventListener("click", () => {
-            closeModal();
-        })
         $form.addEventListener("submit", function (event) {
             event.preventDefault();
             const $emailInput = document.getElementById("email");
@@ -20,25 +16,22 @@ function load() {
             const passwordValue = $passwordInput.value.trim()
             const user = login(emailValue, passwordValue);
             if(user == null) {
-                const $modalMessage = document.getElementById("modal-message");
-                if($modalMessage) {
-                    document.getElementById("modal-title").textContent = "Attention !";
-                    document.getElementById("modal-subtitle").textContent = "Vous n'avez pas pu vous connecter.";
-                    $modalMessage.textContent = "L'adresse email ou le mot de passe est incorrect.";
-                }
-                openModal();
+                openModal(
+                    "Attention !",
+                    "Vous n'avez pas pu vous connecter.",
+                    "L'adresse email ou le mot de passe est incorrect.",
+                    "Fermer",
+                    closeModal
+                );
                 return;
             }
             saveToken(user.id)
             $form.reset()
-            const $modalMessage = document.getElementById("modal-message");
-            if($modalMessage) {
-                document.getElementById("modal-title").textContent = "Validation";
-                document.getElementById("modal-subtitle").textContent = "Vous avez réussi à vous connecter.";
-                $modalMessage.textContent = "Vous allez être redirigé vers votre profil.";
-                document.getElementById("modal-close").style.display = "none";
-            }
-            openModal();
+            openModal(
+                "Validation",
+                "Vous avez réussi à vous connecter.",
+                "Vous allez être redirigé vers votre profil.",
+            );
             redirect("profile");
         });
     }

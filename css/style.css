@@ -1,17 +1,29 @@
+:root {
+    --crust: #010409;
+    --crust-hover: #15191f;
+    --surface: #151b23;
+    --base: #0d1117;
+    --text: azure;
+    --overlay: #cf3777;
+    --overlay-hover: #d7417d;
+    --border: #313840;
+    --error: #f85149;
+    --succes: #73c275;
+}
 .hide {
     display: none;
 }
 
 body {
-    background-color: #0d1117;
+    background-color: var(--base);
     font-family: 'Segoe UI', sans-serif;
-    color: azure;
+    color: var(--text);
     padding: 0;
     margin: 0;
 }
 
 a:link, a:visited {
-    color: azure;
+    color: var(--text);
     text-decoration: none;
 }
 
@@ -36,12 +48,12 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #15191f;
+    background-color: var(--crust-hover);
     cursor: pointer;
 }
 
 nav > div.selected {
-    border-bottom: 2px solid #cf3777;
+    border-bottom: 2px solid var(--overlay);
     padding-bottom: 0.5em;
 }
 
@@ -51,17 +63,17 @@ nav > div.selected {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
-    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
     display: none;
     align-items: center;
     justify-content: center;
 }
 
 .modal {
-    background-color: #151b23;
+    background-color: var(--surface);
     border-radius: 0.5rem;
-    border: 0.1rem solid #313840;
+    border: 0.1rem solid var(--border);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -94,18 +106,18 @@ nav > div.selected {
 
 .modal button {
     margin: 0.75rem auto 0;
-    background-color: #cf3777;
+    background-color: var(--overlay);
     border-radius: 0.25vw;
     border: 0;
     height: 2rem;
-    color: azure;
+    color: var(--text);
     font-weight: bold;
     width: 15vw;
 }
 
 .modal button:hover {
     cursor: pointer;
-    background-color: #d7417d;
+    background-color: var(--overlay-hover);
 }
 
 @media (min-width: 769px) {
