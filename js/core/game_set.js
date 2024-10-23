@@ -94,7 +94,7 @@ function loadSet(type) {
     if (type in gameSets) {
         const cards = [];
         for (let i = 1; i <= gameSets[type].count; i++) {
-            const card = new GameCard(i, `${i}o`, `../resources/assets/cards/${type}/${i}.${gameSets[type].ext}`);
+            const card = new GameCard(i, `${i}o`, `../assets/cards/${type}/${i}.${gameSets[type].ext}`);
             cards.push(card);
         }
         return cards;

@@ -8,7 +8,7 @@
     --overlay-hover: #d7417d;
     --border: #313840;
     --error: #f85149;
-    --succes: #73c275;
+    --success: #73c275;
 }
 .hide {
     display: none;

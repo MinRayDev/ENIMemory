@@ -84,7 +84,7 @@ body {
 }
 
 .success-message {
-    color: var(--succes);
+    color: var(--success);
 }
 
 .password-score {

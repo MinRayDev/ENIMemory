@@ -8,11 +8,13 @@ import {computeGrid} from "../utils/toolbox.js";
 
 function win() {
     saveGame()
-    const $main = document.querySelector("main")
-    if(!$main) {
-        return
-    }
-    openModal()
+    openModal(
+        "Félicitations !",
+        "Vous avez réussi à résoudre le jeu !",
+        "Appuyez sur `espace` pour recommencer.",
+        "Rejouer",
+        () => location.reload()
+    )
 }
 
 function incrementScore() {
@@ -40,8 +42,7 @@ export function load() {
         console.error("Couldn't shuffle cards");
         return;
     }
-    const userSize = user.size;
-    console.log("Game received", user.size, typeof user.size)
+    const userSize = user?.size;
     if (userSize) {
         game.size = JSON.parse(user.size);
     }
@@ -55,10 +56,6 @@ export function load() {
     for(const card of cards) {
         game.grid[card.id] = card;
         document.getElementById("cards").insertAdjacentHTML("beforeend", `<div class="card-container card-hide"><img src="${card.path}" alt="${card.id}" id="${card.id}" draggable="false"></div>`);
-        const $closeModal = document.getElementById("modal-close");
-        $closeModal.addEventListener("click", () => {
-            location.reload();
-        })
         const $card = document.getElementById(card.id);
         $card.addEventListener("click", () => {
             const response = card.setSelected();

@@ -1,11 +1,12 @@
-function openModal(title, subtitle, message, closeButton = "", buttonAction = null) {
+function openModal(title, subTitle, message, closeButton = "", buttonAction = null) {
+    console.log("First message", message)
     const button = closeButton ? `<button id="modal-close">${closeButton}</button>` : ""
     const modalHTML = `
     <div class="modal-container">
         <section class="modal">
             <div class="modal-content">
                 <h1 id="modal-title">${title}</h1>
-                <p id="modal-subtitle">${subtitle}</p>
+                <p id="modal-subtitle">${subTitle}</p>
                 <p id="modal-message">${message}</p>
                 ${button}
             </div>
@@ -36,7 +37,22 @@ function closeModal() {
     }, 500);
 }
 
+function timedModal(title, subTitle, message, action, timeOut = 1, delay = 1) {
+    openModal(
+        title,
+        subTitle,
+        message.replace("%start%", timeOut+1),
+    );
+    const intervalId = setInterval(() => {
+        const $modalMessage = document.getElementById("modal-message")
+        $modalMessage.textContent = message.replace("%start%", timeOut);
+        timeOut--;
+    }, delay*1000)
+    setTimeout(() => { clearInterval(intervalId); action()}, (timeOut+1) * 1000);
+}
+
 export {
     openModal,
-    closeModal
+    closeModal,
+    timedModal
 }

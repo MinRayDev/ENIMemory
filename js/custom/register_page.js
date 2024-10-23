@@ -6,37 +6,12 @@ import {
     checkUsername,
     getPasswordScore
 } from "../utils/checker.js";
-import {closeModal, openModal} from "../components/modal.js";
+import {closeModal, openModal, timedModal} from "../components/modal.js";
 import {addUser, User} from "../core/users.js";
 import {redirect} from "../utils/toolbox.js";
+import {setError, setIdle, setSuccess} from "../components/register_input.js";
+import {shake} from "../components/glitter.js";
 
-
-function setIdle(id, message = "") {
-    console.log("set idle")
-    const $messageHolder = document.getElementById(`subto-${id}`);
-    $messageHolder.textContent = message;
-    $messageHolder.classList.remove("error-message", "success-message")
-    const $messageIcon = document.getElementById(`${id}-icon`)
-    if ($messageIcon) {
-        $messageIcon.remove()
-    }
-}
-
-function setError(id, message) {
-    setIdle(id)
-    const $messageHolder = document.getElementById(`subto-${id}`);
-    $messageHolder.textContent = message;
-    $messageHolder.classList.add("error-message");
-    $messageHolder.insertAdjacentHTML("beforebegin", `<img src="../resources/assets/error.svg" alt="error-svg" id="${id}-icon"/>`)
-}
-
-function setSuccess(id, message) {
-    setIdle(id)
-    const $messageHolder = document.getElementById(`subto-${id}`);
-    $messageHolder.textContent = message;
-    $messageHolder.classList.add("success-message")
-    $messageHolder.insertAdjacentHTML("beforebegin", `<img src="../resources/assets/check.svg" alt="check-svg" id="${id}-icon"/>`)
-}
 
 function registerChecker(id, formatter, checker, idleMessage = "") {
     const $input= document.getElementById(id);
@@ -71,7 +46,7 @@ function passwordRegisterChecker() {
         ["weak-score", "medium-score", "strong-score"].forEach((id) => {
             const $score = document.getElementById(id);
             if($score) {
-                $score.style.backgroundColor = "#0d1117"
+                $score.style.backgroundColor = "var(--base)"
             }
         });
         if (score >= 1) {
@@ -81,7 +56,7 @@ function passwordRegisterChecker() {
             document.getElementById("medium-score").style.backgroundColor = "#fff051"
         }
         if (score >= 3) {
-            document.getElementById("strong-score").style.backgroundColor = "#14e614"
+            document.getElementById("strong-score").style.backgroundColor = "var(--success)"
         }
         if (((typeof value === "string") && value.length === 0) || value == null) {
             setIdle(confirmId, "")
@@ -106,56 +81,41 @@ function load() {
     passwordRegisterChecker()
     const $form = document.getElementById("register-form");
     if ($form) {
-        const $closeModal = document.getElementById("modal-close");
-        $closeModal.addEventListener("click", () => {
-            closeModal();
-        })
         $form.addEventListener("submit", function (event) {
             event.preventDefault();
             const response = checkRegister();
             if(typeof response === "string") {
-                const $body = document.querySelector("body");
-                $body.classList.add("shake");
-                $body.addEventListener('animationend', () => {
-                    $body.classList.remove('shake');
-                }, { once: true });
-                document.getElementById("modal-title").textContent = "Attention !";
-                document.getElementById("modal-subtitle").textContent = "Vous n'avez pas pu vous inscrire.";
-                const $modalMessage = document.getElementById("modal-message");
-                if($modalMessage) {
-                    $modalMessage.textContent = response;
-                }
-                openModal();
+                shake(document.querySelector("body"))
+                openModal(
+                    "Attention !",
+                    "Vous n'avez pas pu vous inscrire.",
+                    response,
+                    "Fermer",
+                    closeModal
+                );
                 return;
             }
             const newUser = new User(User.createId(response.username), response.username, response.email);
             const addResponse = addUser(newUser, response.passwords);
             if(typeof addResponse === "string") {
-                const $body = document.querySelector("body");
-                $body.classList.add("shake");
-                $body.addEventListener('animationend', () => {
-                    $body.classList.remove('shake');
-                }, { once: true });
-                const $modalMessage = document.getElementById("modal-message");
-                if($modalMessage) {
-                    document.getElementById("modal-title").textContent = "Attention !";
-                    document.getElementById("modal-subtitle").textContent = "Vous n'avez pas pu vous inscrire.";
-                    $modalMessage.textContent = addResponse;
-                }
-                openModal();
-            } else {
-                $form.reset()
-                const $modalMessage = document.getElementById("modal-message");
-                if($modalMessage) {
-                    document.getElementById("modal-title").textContent = "Validation";
-                    document.getElementById("modal-subtitle").textContent = "Vous avez réussi à vous inscrire.";
-                    $modalMessage.textContent = "Vous allez être redirigé vers la page de connexion.";
-                    document.getElementById("modal-close").style.display = "none";
-
-                }
-                openModal();
-                redirect("login");
+                shake(document.querySelector("body"))
+                openModal(
+                    "Attention !",
+                    "Vous n'avez pas pu vous inscrire.",
+                    addResponse,
+                    "Fermer",
+                    closeModal
+                );
+                return;
             }
+            $form.reset()
+            timedModal(
+                "Validation",
+                "Vous avez réussi à vous inscrire.",
+                "Redirection vers la page de connexion dans %start% secondes.",
+                () => redirect("login"),
+                1,
+            );
         });
     }
 }

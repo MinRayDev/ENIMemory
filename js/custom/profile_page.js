@@ -1,8 +1,8 @@
 import {getId, isConnected} from "../core/client.js";
-import {openModal} from "../components/modal.js";
+import {timedModal} from "../components/modal.js";
 import {editUser, User} from "../core/users.js";
 import {gameSets} from "../core/references.js";
-import {computeGrid} from "../utils/toolbox.js";
+import {computeGrid, redirect} from "../utils/toolbox.js";
 
 
 function loadSize(eventLoad = true) {
@@ -40,23 +40,13 @@ function loadSize(eventLoad = true) {
 
 function load() {
     if(!isConnected()) {
-        openModal();
-        let start = 1;
-        const $modalMessage = document.getElementById("modal-message")
-        if($modalMessage) {
-            $modalMessage.textContent = `Redirection vers la page de connexion dans ${start+1} secondes.`;
-        }
-        const intervalId = setInterval(() => {
-            const $modalMessage = document.getElementById("modal-message")
-            if($modalMessage) {
-                $modalMessage.textContent = `Redirection vers la page de connexion dans ${start} secondes.`;
-            }
-            start--;
-        }, 1000)
-        setTimeout(() => {
-            window.location.href = `./login.html`;
-            clearInterval(intervalId);
-        }, (start+1) * 1000);
+        timedModal(
+            "Attention !",
+            "Vous n'êtes pas connecté. Vous ne pouvez pas avoir accès à votre profil.",
+            "Redirection vers la page de connexion dans %start% secondes.",
+            () => redirect("login"),
+            1,
+        );
         return;
     }
     document.querySelector("#profile > section:first-child").style.display = "flex";
@@ -75,10 +65,10 @@ function load() {
         $setSelector.appendChild($option);
     }
     $setSelector.value = user.set
-    $previewImage.src = `../resources/assets/cards/previews/${user.set}.png`;
+    $previewImage.src = `../assets/cards/previews/${user.set}.png`;
     $setSelector.addEventListener("change", () => {
         editUser(getId(), "set", $setSelector.value);
-        $previewImage.src =`../resources/assets/cards/previews/${$setSelector.value}.png`;
+        $previewImage.src =`../assets/cards/previews/${$setSelector.value}.png`;
         loadSize();
     });
     loadSize(false);

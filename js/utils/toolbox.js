@@ -13,10 +13,8 @@ function getCurrentHtml() {
     return window.location.pathname.split("/").pop().split(".").slice(0, -1).join(".");
 }
 
-function redirect(page, timeout = 2500) {
-    setTimeout(() => {
-        window.location.href = `./${page}.html`;
-    }, timeout);
+function redirect(page) {
+    window.location.href = `./${page}.html`;
 }
 
 function computeGrid(length) {

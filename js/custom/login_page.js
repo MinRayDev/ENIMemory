@@ -1,4 +1,4 @@
-import {closeModal, openModal} from "../components/modal.js";
+import {closeModal, openModal, timedModal} from "../components/modal.js";
 import {login} from "../core/users.js";
 import {saveToken} from "../core/client.js";
 import {redirect} from "../utils/toolbox.js";
@@ -27,12 +27,13 @@ function load() {
             }
             saveToken(user.id)
             $form.reset()
-            openModal(
+            timedModal(
                 "Validation",
                 "Vous avez réussi à vous connecter.",
-                "Vous allez être redirigé vers votre profil.",
+                "Redirection vers votre profil dans %start% secondes.",
+                () => redirect("profile"),
+                1,
             );
-            redirect("profile");
         });
     }
 }

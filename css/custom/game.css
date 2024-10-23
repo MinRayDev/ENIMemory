@@ -54,7 +54,7 @@
 }
 
 .card-found {
-    outline: 0.2rem solid var(--succes);
+    outline: 0.2rem solid var(--success);
     animation: foundAnimation 0.7s ease forwards;
 }
 
