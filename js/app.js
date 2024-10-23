@@ -2,6 +2,7 @@ import {getCurrentHtml} from "./utils/toolbox.js";
 import {load as loadIndex} from "./custom/index_page.js";
 import {load as loadGame} from "./custom/game_page.js";
 import {load as loadRegister} from "./custom/register_page.js";
+import {load as loadLogin} from "./custom/login_page.js";
 
 
 function init() {
@@ -21,6 +22,10 @@ function init() {
         }
         case "register": {
             loadRegister();
+            break;
+        }
+        case "login": {
+            loadLogin();
             break;
         }
     }

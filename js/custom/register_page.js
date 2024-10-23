@@ -1,5 +1,14 @@
-import {checkEmail, checkPassword, checkPasswords, checkRegister, checkUsername} from "../utils/checker.js";
-import {openModal} from "../utils/modal.js";
+import {
+    checkEmail,
+    checkPassword,
+    checkPasswords,
+    checkRegister,
+    checkUsername,
+    getPasswordScore
+} from "../utils/checker.js";
+import {closeModal, openModal} from "../utils/modal.js";
+import {addUser, User} from "../core/users.js";
+import {redirect} from "../utils/toolbox.js";
 
 
 function setIdle(id, message = "") {
@@ -58,8 +67,23 @@ function passwordRegisterChecker() {
     const check = () => {
         const value = $input.value.trim();
         const valueConfirmation = $inputConfirm.value.trim();
+        const score = getPasswordScore(value);
+        ["weak-score", "medium-score", "strong-score"].forEach((id) => {
+            const $score = document.getElementById(id);
+            if($score) {
+                $score.style.backgroundColor = "#0d1117"
+            }
+        });
+        if (score >= 1) {
+            document.getElementById("weak-score").style.backgroundColor = "#d75c13"
+        }
+        if (score >= 2) {
+            document.getElementById("medium-score").style.backgroundColor = "#fff051"
+        }
+        if (score >= 3) {
+            document.getElementById("strong-score").style.backgroundColor = "#14e614"
+        }
         if (((typeof value === "string") && value.length === 0) || value == null) {
-            console.log("test");
             setIdle(confirmId, "")
             return;
         }
@@ -84,24 +108,42 @@ function load() {
     if ($form) {
         const $closeModal = document.getElementById("modal-close");
         $closeModal.addEventListener("click", () => {
-            const $modal = document.querySelector(".modal")
-            $modal.classList.remove("show");
-            $modal.classList.add("hide");
-            setTimeout(() => {
-                $modal.parentElement.style.display = "none";
-            }, 500);
+            closeModal();
         })
         $form.addEventListener("submit", function (event) {
             event.preventDefault();
             const response = checkRegister();
-            if(response) {
+            if(typeof response === "string") {
                 const $modalMessage = document.getElementById("modal-message");
                 if($modalMessage) {
                     $modalMessage.textContent = response;
                 }
                 openModal();
+                return;
             }
-            // TODO: register
+            const newUser = new User(User.createId(response.username), response.username, response.email);
+            const addResponse = addUser(newUser, response.passwords);
+            if(typeof addResponse === "string") {
+                const $modalMessage = document.getElementById("modal-message");
+                if($modalMessage) {
+                    document.getElementById("modal-title").textContent = "Attention !";
+                    document.getElementById("modal-subtitle").textContent = "Vous n'avez pas pu vous connecter.";
+                    $modalMessage.textContent = addResponse;
+                }
+                openModal();
+            } else {
+                $form.reset()
+                const $modalMessage = document.getElementById("modal-message");
+                if($modalMessage) {
+                    document.getElementById("modal-title").textContent = "Validation";
+                    document.getElementById("modal-subtitle").textContent = "Vous avez réussi à vous inscrire.";
+                    $modalMessage.textContent = "Vous allez être redirigé vers la page de connexion.";
+                    document.getElementById("modal-close").style.display = "none";
+
+                }
+                openModal();
+                redirect("login");
+            }
         });
     }
 }

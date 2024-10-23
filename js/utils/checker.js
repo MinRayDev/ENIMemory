@@ -1,3 +1,7 @@
+const specialCharacters = /[!@#$%^&*()_+[\]{}|;:'",.<>?/]/
+const numberPattern = /^.*\d+.*$/
+
+
 /**
  * Check if a username is valid. (3 to 50 characters, alphanumeric)
  *
@@ -71,11 +75,11 @@ function checkPassword(password) {
         return "Le mot de passe doit contenir au moins 1 lettre.";
     }
 
-    if (!/\d/.test(password)) {
+    if (!numberPattern.test(password)) {
         return "Le mot de passe doit contenir au moins 1 chiffre.";
     }
 
-    if (!/[!@#$%^&*()_+[\]{}|;:'",.<>?/]/.test(password)) {
+    if (!specialCharacters.test(password)) {
         return "Le mot de passe doit contenir au moins un caractère spécial.";
     }
 
@@ -107,6 +111,19 @@ function checkPasswords(password, passwordConfirmation) {
 }
 
 
+function getPasswordScore(password) {
+    console.log(numberPattern.test(password))
+    console.log(specialCharacters.test(password))
+    if(password.length > 9 && numberPattern.test(password) && specialCharacters.test(password)) {
+        return 3;
+    }
+    if(password.length > 6 && (numberPattern.test(password) || specialCharacters.test(password))) {
+        return 2;
+    }
+    return 1;
+}
+
+
 function checkRegister() {
     const $usernameInput = document.getElementById("username");
     const $emailInput = document.getElementById("email");
@@ -135,7 +152,11 @@ function checkRegister() {
             return response;
         }
     }
-    return undefined;
+    return {
+        username: usernameValue,
+        email: emailValue,
+        passwords: passwordValue
+    };
 }
 
 
@@ -144,5 +165,6 @@ export {
     checkEmail,
     checkPassword,
     checkPasswords,
+    getPasswordScore,
     checkRegister
 }

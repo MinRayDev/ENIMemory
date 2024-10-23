@@ -12,15 +12,15 @@
 		<nav>
 			<div id="nav-index"><a href="../index.html">Accueil</a></div>
 			<div id="nav-register"><a href="./register.html">S'inscrire</a></div>
-			<div id="nav-login"><a>Se connecter</a></div>
-			<div id="nav-profile"><a>Profil</a></div>
+			<div id="nav-login"><a href="./login.html">Se connecter</a></div>
+			<div id="nav-profile"><a href="./profile.html">Profil</a></div>
 			<div id="nav-game"><a href="./game.html">Jouer</a></div>
 		</nav>
 		<div class="modal-container">
 			<section class="modal">
 				<div class="modal-content">
-					<h1>Alerte !</h1>
-					<p>Vous n'avez pas pu vous inscrire.</p>
+					<h1 id="modal-title">title</h1>
+					<p id="modal-subtitle"></p>
 					<p id="modal-message"></p>
 					<button id="modal-close">Fermer</button>
 				</div>
@@ -55,6 +55,20 @@
 					<input type="password" id="confirm-password" name="confirm-password" required minlength="6" placeholder="••••••">
 					<div class="message-container">
 						<p id="subto-confirm-password"></p>
+					</div>
+				</div>
+				<div class="password-score">
+					<div class="score-item">
+						<hr id="weak-score">
+						<p>Faible</p>
+					</div>
+					<div class="score-item">
+						<hr id="medium-score">
+						<p>Moyen</p>
+					</div>
+					<div class="score-item">
+						<hr id="strong-score">
+						<p>Fort</p>
 					</div>
 				</div>
 				<div class="form-group">

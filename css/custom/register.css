@@ -3,7 +3,7 @@ h1 {
     margin: 3.5vh;
 }
 
-#register-form {
+#register-form, #login-form {
     background-color: #151b23;
     border-radius: 0.5rem;
     border: 0.1rem solid #313840;
@@ -79,3 +79,26 @@ h1 {
     color: #73c275;
 }
 
+.password-score {
+    margin: 0 2vw 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.score-item {
+    text-align: center; /* Centers the text under the hr */
+}
+
+.password-score hr {
+    width: 5rem;
+    height: 0.3rem;
+    border-radius: 0.3rem;
+    background-color: #0d1117;
+    border: none;
+    margin: 0;
+}
+
+#weak-score {
+    background-color: #d75c13;
+}
