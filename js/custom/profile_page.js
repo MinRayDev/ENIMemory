@@ -1,5 +1,4 @@
 import {getId, isConnected} from "../core/client.js";
-import {timedModal} from "../components/modal.js";
 import {editUser, User} from "../core/users.js";
 import {gameSets} from "../core/references.js";
 import {computeGrid, redirect} from "../utils/toolbox.js";
@@ -28,7 +27,6 @@ function loadSize(eventLoad = true) {
     }
     if(!eventLoad) {
         if (user.size) {
-            console.log("Size from user", user.size);
             $sizeSelector.value = user.size;
         }
         $sizeSelector.addEventListener("change", () => {
@@ -40,14 +38,7 @@ function loadSize(eventLoad = true) {
 
 function load() {
     if(!isConnected()) {
-        timedModal(
-            "Attention !",
-            "Vous n'êtes pas connecté. Vous ne pouvez pas avoir accès à votre profil.",
-            "Redirection vers la page de connexion dans %start% secondes.",
-            () => redirect("login"),
-            1,
-        );
-        return;
+        redirect("login")
     }
     document.querySelector("#profile > section:first-child").style.display = "flex";
     document.querySelector("#profile > section:nth-child(2)").style.display = "block";

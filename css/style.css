@@ -9,7 +9,9 @@
     --border: #313840;
     --error: #f85149;
     --success: #73c275;
+    --link: #4493f8;
 }
+
 .hide {
     display: none;
 }

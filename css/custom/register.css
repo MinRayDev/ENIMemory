@@ -30,7 +30,7 @@ body {
 }
 
 .form-group label {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.6rem;
 }
 
 .form-group input {
@@ -126,4 +126,12 @@ body {
     animation-timing-function: ease-in-out;
     animation-iteration-count: 2;
     overflow: hidden;
+}
+
+#link {
+    font-size: 0.9rem;
+    text-align: end;
+    color: var(--link);
+    font-weight: bold;
+    margin: 0 1.5vw 0;
 }

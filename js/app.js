@@ -7,6 +7,11 @@ import {displayNav} from "./components/nav.js";
 
 
 function init() {
+    const $meta = document.querySelector("meta[name='navref']")
+    let navRef;
+    if ($meta) {
+        navRef = $meta.content;
+    }
     const currentHtml = getCurrentHtml();
     let prefixIndex = "../";
     let prefixPages = "./";
@@ -33,7 +38,8 @@ function init() {
             break;
         }
     }
-    displayNav(currentHtml, prefixIndex, prefixPages);
+    console.log(navRef ?? currentHtml)
+    displayNav(navRef ?? currentHtml, prefixIndex, prefixPages);
 
 }
 document.addEventListener("DOMContentLoaded", init);
