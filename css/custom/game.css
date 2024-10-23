@@ -1,3 +1,11 @@
+#tries {
+    background-color: #151b23;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #313840;
+    margin: 2.5vh 2vw 2.5vh 87.5vw;
+    padding: 2vh;
+}
+
 #cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

@@ -1,5 +1,5 @@
 import {doubleCards, GameCard, loadSet, shuffle} from "../core/game_set.js";
-import {game} from "../core/game.js";
+import {game, saveGame} from "../core/game.js";
 import {openModal} from "../utils/modal.js";
 import {getId} from "../core/client.js";
 import {User} from "../core/users.js";
@@ -7,11 +7,18 @@ import {computeGrid} from "../utils/toolbox.js";
 
 
 function win() {
+    saveGame()
     const $main = document.querySelector("main")
     if(!$main) {
         return
     }
     openModal()
+}
+
+function incrementScore() {
+    game.score++;
+    const $score = document.getElementById("score");
+    $score.textContent = `${game.score}`
 }
 
 export function load() {
@@ -22,7 +29,8 @@ export function load() {
         }
     });
     const user = User.getUserById(getId())
-    const cardSet = loadSet(user?.set ?? "vegetables");
+    game.set = user?.set ?? "vegetables";
+    const cardSet = loadSet(game.set);
     if(!cardSet) {
         console.error("Couldn't load card set");
         return;
@@ -33,18 +41,17 @@ export function load() {
         return;
     }
     const userSize = user.size;
-    let size;
     console.log("Game received", user.size, typeof user.size)
     if (userSize) {
-        size = JSON.parse(user.size);
+        game.size = JSON.parse(user.size);
     }
-    if(!size) {
+    if(!game.size) {
         const grid = computeGrid(cardSet.length);
-        size = grid[Math.floor(grid.length/2)];
+        game.size = grid[Math.floor(grid.length/2)];
     }
     const $cardSection = document.getElementById("cards");
-    $cardSection.style.gridTemplateColumns = `repeat(${size[0]}, 1fr)`
-    $cardSection.style.gridTemplateRows = `repeat(${size[1]}, 1fr)`
+    $cardSection.style.gridTemplateColumns = `repeat(${game.size[0]}, 1fr)`
+    $cardSection.style.gridTemplateRows = `repeat(${game.size[1]}, 1fr)`
     for(const card of cards) {
         game.grid[card.id] = card;
         document.getElementById("cards").insertAdjacentHTML("beforeend", `<div class="card-container card-hide"><img src="${card.path}" alt="${card.id}" id="${card.id}" draggable="false"></div>`);
@@ -65,10 +72,12 @@ export function load() {
                 if(card.bothFound()) {
                     card.setFound()
                     card.setLinkFound()
+                    incrementScore();
                 } else if (game.selections.length === 2) {
                     game.selections.forEach((id) => {
                         setTimeout(() => GameCard.setUnSelected(id), 1000)
                     })
+                    incrementScore();
                 }
                 if(Object.keys(game.grid).length === game.found) {
                     win()

@@ -1,12 +1,13 @@
 import {getLocalStorage, setLocalStorage} from "../utils/storage.js";
 
 class User {
-    constructor(id, name, email, set = "vegetables") {
+    constructor(id, name, email, set = "vegetables", size = null, history = []) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.set = set
-        this.size = null;
+        this.size = size;
+        this.history = history;
     }
 
     toJson() {
@@ -15,12 +16,13 @@ class User {
             name: this.name,
             email: this.email,
             set: this.set,
-            size: this.size
+            size: this.size,
+            history: this.history
         }
     }
 
     static parseUser(jsonObject) {
-        return new User(jsonObject["id"], jsonObject["name"], jsonObject["email"], jsonObject["set"], jsonObject["size"]);
+        return new User(jsonObject["id"], jsonObject["name"], jsonObject["email"], jsonObject["set"], jsonObject["size"], jsonObject["history"]);
     }
 
     static createId(name) {
