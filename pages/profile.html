@@ -5,7 +5,7 @@
 		<title>Document</title>
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<link rel="stylesheet" href="../css/style.css">
-		<link rel="stylesheet" href="../css/custom/register.css">
+		<link rel="stylesheet" href="../css/custom/profile.css">
 		<script type="module" src="../js/app.js" defer></script>
 	</head>
 	<body>
@@ -16,5 +16,26 @@
 			<div id="nav-profile"><a href="./profile.html">Profil</a></div>
 			<div id="nav-game"><a href="./game.html">Jouer</a></div>
 		</nav>
+		<div class="modal-container">
+			<section class="modal">
+				<div class="modal-content">
+					<h1 id="modal-title">Erreur</h1>
+					<p id="modal-subtitle">Vous n'êtes pas connecté. Vous ne pouvez pas avoir accès à votre profil.</p>
+					<p id="modal-message"></p>
+				</div>
+			</section>
+		</div>
+		<main>
+			<section class="hide">
+				<img alt="Card Set Preview" src="" id="set-preview"/>
+				<label>
+					<select id="set-selector"></select>
+				</label>
+			</section>
+			<section class="hide">
+				<h2 id="username">username</h2>
+				<h3 id="email">email</h3>
+			</section>
+		</main>
 	</body>
 </html>

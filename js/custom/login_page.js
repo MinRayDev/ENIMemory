@@ -1,6 +1,6 @@
 import {closeModal, openModal} from "../utils/modal.js";
 import {login} from "../core/users.js";
-import {client} from "../core/client.js";
+import {getId, saveToken} from "../core/client.js";
 import {redirect} from "../utils/toolbox.js";
 
 
@@ -29,9 +29,8 @@ function load() {
                 openModal();
                 return;
             }
-            client.user = user;
+            saveToken(user.id)
             $form.reset()
-
             const $modalMessage = document.getElementById("modal-message");
             if($modalMessage) {
                 document.getElementById("modal-title").textContent = "Validation";
@@ -40,9 +39,7 @@ function load() {
                 document.getElementById("modal-close").style.display = "none";
             }
             openModal();
-            console.log("log", client.user)
             redirect("profile");
-
         });
     }
 }

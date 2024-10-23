@@ -1,6 +1,8 @@
 import {doubleCards, GameCard, loadSet, shuffle} from "../core/game_set.js";
 import {game} from "../core/game.js";
 import {closeModal, openModal} from "../utils/modal.js";
+import {getId} from "../core/client.js";
+import {User} from "../core/users.js";
 
 
 function win() {
@@ -20,7 +22,8 @@ export function load() {
             console.log("Spacebar press prevented!");
         }
     });
-    const cardSet = loadSet("vegetables");
+    const user = User.getUserById(getId())
+    const cardSet = loadSet(user?.set ?? "vegetables");
     if(!cardSet) {
         console.error("Couldn't load card set");
         return;
