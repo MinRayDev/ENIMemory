@@ -8,5 +8,20 @@ h1 {
 }
 
 img {
-    max-width: 70vw;
+    max-width: 50vw;
+}
+
+
+@media only screen and (max-width: 1025px) {
+    main.container.inside-center-container {
+        border: 0;
+        display: flex;
+        margin: 3vh 4vw;
+    }
+    h1 {
+        text-align: center;
+    }
+    img {
+        max-width: 90vw;
+    }
 }

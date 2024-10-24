@@ -4,10 +4,10 @@ body {
 }
 
 
-/* Form Content */
+/* Form */
 form {
     background-color: var(--surface);
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
     border: 0.1rem solid var(--border);
     display: flex;
     flex-direction: column;
@@ -17,11 +17,12 @@ form {
     padding: 2vh 0.1vw;
 }
 
+/* Form Content */
 form button {
     margin: 0.5rem 0 0;
 }
 
-.link {
+a.link {
     font-size: 0.9rem;
     text-align: end;
     color: var(--link);
@@ -45,7 +46,7 @@ form .input-container label {
 /* Form Content > Groups > Inputs */
 form .input-container input {
     background-color: var(--base);
-    border-radius: 0.25vw;
+    border-radius: var(--radius);
     border: 0.1rem solid var(--border);
     height: 2rem;
     color: var(--text);
@@ -98,4 +99,12 @@ form .password-score {
     justify-content: space-between;
     align-items: center;
     text-align: center;
+}
+
+@media only screen and (max-width: 1025px) {
+    /* Form */
+    form {
+        margin: 4vw 12vw;
+        padding: 2vh 3vw;
+    }
 }

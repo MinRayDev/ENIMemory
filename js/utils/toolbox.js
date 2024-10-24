@@ -58,7 +58,6 @@ function onSubmit($node, action, once = false) {
 function onPress($node, keys, action, once = false) {
     const keyCodes = keys.map(key => key.toUpperCase());
     $node.addEventListener("keydown", (event) => {
-        console.log("press", event.code);
         if (keyCodes.includes(event.code.toUpperCase())) {
             event.preventDefault();
             action();

@@ -16,10 +16,8 @@ function parseUser(jsonObject) {
 
 function getUserById(id) {
     let localUsers = getLocalStorage("users", JSON.parse);
-    if(localUsers == null) {
-        localUsers = {}
-    }
-    return parseUser(localUsers[id]);
+    if(localUsers == null) localUsers = {}
+    return id ? parseUser(localUsers[id]) : null;
 }
 
 function addUser(name, email, password) {
@@ -52,7 +50,6 @@ function addUser(name, email, password) {
 }
 
 function editUser(userId, key, value) {
-    console.log("Setting", key, value)
     let localUsers = getLocalStorage("users", JSON.parse);
     // From Sonar
     if (!localUsers?.[userId]) {

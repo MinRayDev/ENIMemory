@@ -78,7 +78,7 @@ section#history {
 #history .history-game {
     max-width: 10vw;
     max-height: 5vh;
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
     border: 0.0625rem solid var(--border);
     margin: 0.5rem 0;
     padding: 0.3rem 0.5rem ;
@@ -90,6 +90,63 @@ section#history {
 }
 
 
+@media only screen and (max-width: 1025px) {
+    main.center-container {
+        margin: 0;
+    }
+    /* Global Container */
+    #global-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5vw 0;
+        margin: 0;
+    }
+    /* Global Container > Game Selection */
+    #selection-container.container {
+        display: flex;
+        justify-content: normal;
+        width: 90vw;
+        border: 0;
+        margin: 2vh 0 3vh 0;
+        padding: 0;
+    }
+    /* Global Container > Game Selection > Interactions */
+    #selection-container .selector-container {
+        width: 100%;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    #selection-container .selector-container select {
+        padding: 0.7rem 0 0.75rem 0.5rem;
+        width: 80%;
+    }
+
+    /* Global Container > Game Selection > Preview */
+    #set-preview {
+        max-width: 100%;
+        max-height: 100vh;
+    }
+
+    /* Global Container > Profile */
+    #profile-container.container {
+        width: 70vw;
+        margin: 0 10%;
+        border: 0;
+        display: block;
+    }
+
+    section#history {
+        display: flex;
+        align-items: center;
+    }
+
+    #history .history-game {
+        max-width: 100%;
+        max-height: 5vh;
+    }
+}
 
 
 

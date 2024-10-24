@@ -15,6 +15,8 @@
     --medium: #fff051;
     --link: #4493f8;
     --tooltip: #34383a;
+
+    --radius: 0.45rem;
 }
 
 body {
@@ -43,7 +45,7 @@ nav .nav-content {
 }
 
 nav .nav-content a {
-    border-radius: 0.35rem;
+    border-radius: var(--radius);
     padding: 0.5rem;
 }
 
@@ -63,10 +65,10 @@ h1 {
     margin: 3.5vh;
 }
 
-img {  border-radius: 0.5rem; }
+img {  border-radius: var(--radius); }
 
 hr {
-    border-radius: 0.3rem;
+    border-radius: var(--radius);
     border: none;
 }
 
@@ -80,7 +82,7 @@ select {
     background-color: var(--surface);
     color: azure;
     border: 0.1rem solid var(--border);
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
     outline-style: none;
     height: 2.75rem;
 }
@@ -93,7 +95,7 @@ select:hover {
 /* Nodes > Button */
 button {
     background-color: var(--overlay);
-    border-radius: 0.25vw;
+    border-radius: var(--radius);
     border: 0;
     height: 2rem;
     color: var(--text);
@@ -118,7 +120,7 @@ button:hover {
 /* Classes > Containers */
 .container {
     border: 0.0625rem solid var(--border);
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
 
 }
 
@@ -149,7 +151,7 @@ button:hover {
 /* Classes > Modal Container > Modal */
 .modal {
     background-color: var(--surface);
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
     border: 0.1rem solid var(--border);
     display: flex;
     flex-direction: column;
@@ -203,7 +205,7 @@ button:hover {
     background-color: var(--tooltip);
     color: var(--text);
     text-align: center;
-    border-radius: 6px;
+    border-radius: var(--radius);
     position: absolute;
     z-index: 1;
     padding: 0.4rem;
@@ -221,3 +223,26 @@ button:hover {
     transition: opacity 0.2s ease-in-out, visibility 0s 0s;
 }
 
+@media only screen and (max-width: 1025px) {
+    /* Nav */
+    nav {
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        padding: 0 0.5rem;
+    }
+    /* Nav > Nav Content */
+    nav .nav-content a {
+        font-size: 1.3rem;
+    }
+    /* Nodes */
+    p, li {
+        font-size: 1.2rem;
+    }
+    .modal {
+        margin: 4vw 10vw;
+    }
+    .modal button {
+        width: 50vw;
+    }
+}
