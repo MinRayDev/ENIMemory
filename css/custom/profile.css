@@ -44,6 +44,7 @@
     border: 0.1rem solid var(--border);
     border-radius: 0.5rem;
     outline-style: none;
+    height: 2.75rem;
 }
 
 hr {
@@ -79,8 +80,6 @@ hr {
         margin-left: 2.5%;
         display: flex;
     }
-
-
 
     #profile button {
         width: 100%;

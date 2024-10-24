@@ -2,8 +2,9 @@ import {doubleCards, GameCard, loadSet, shuffle} from "../core/game_set.js";
 import {game, saveGame} from "../core/game.js";
 import {openModal} from "../components/modal.js";
 import {getId} from "../core/client.js";
-import {User} from "../core/users.js";
+import { User} from "../core/users.js";
 import {computeGrid, redirect} from "../utils/toolbox.js";
+import {gameSets} from "../core/references.js";
 
 
 function win() {
@@ -24,6 +25,31 @@ function incrementScore() {
 }
 
 export function load() {
+    const user = User.getUserById(getId());
+    if(!game.set) {
+        const $setSelector = document.getElementById("set-selector");
+        const $previewImage = document.getElementById("set-preview");
+        for (const [key, value] of Object.entries(gameSets)) {
+            const $option = document.createElement("option");
+            $option.value = key
+            $option.textContent = value["display_name"];
+            $setSelector.appendChild($option);
+        }
+        $setSelector.value = user?.set ?? "vegetables";
+        $previewImage.src = `../assets/cards/previews/${$setSelector.value}.png`;
+        $setSelector.addEventListener("change", () => {
+            $previewImage.src =`../assets/cards/previews/${$setSelector.value}.png`;
+        });
+        const $startButton = document.getElementById("start");
+        $startButton.addEventListener("click", () => {
+            const $setSelector = document.getElementById("set-selector");
+            game.set = $setSelector.value;
+            load();
+        },  {"once": true})
+        return;
+    }
+    document.getElementById("game-selector").style.display = "none";
+    document.getElementById("game").style.display = "block";
     document.querySelector(".tooltip").addEventListener("click", () => {
         redirect("scoreboard")
     })
@@ -33,8 +59,7 @@ export function load() {
             location.reload();
         }
     });
-    const user = User.getUserById(getId())
-    game.set = user?.set ?? "vegetables";
+    // game.set = user?.set ?? "vegetables";
     const cardSet = loadSet(game.set);
     if(!cardSet) {
         console.error("Couldn't load card set");

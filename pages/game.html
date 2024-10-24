@@ -11,11 +11,20 @@
 	</head>
 	<body>
 		<main>
-			<div class="tooltip">
-				<h2 id="tries">Essais: <span id="score">0</span></h2>
-				<span class="tooltip-message">Cliquez pour voir le tableau des scores.</span>
-			</div>
-			<section id="cards"></section>
+			<section id="game-selector">
+				<img alt="Card Set Preview" src="" id="set-preview"/>
+				<div>
+					<select id="set-selector"></select>
+					<button id="start">Commencer</button>
+				</div>
+			</section>
+			<section id="game">
+				<div class="tooltip">
+					<h2 id="tries">Essais: <span id="score">0</span></h2>
+					<span class="tooltip-message">Cliquez pour voir le tableau des scores.</span>
+				</div>
+				<section id="cards"></section>
+			</section>
 		</main>
 	</body>
 </html>
