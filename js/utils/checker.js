@@ -29,6 +29,7 @@ function checkUsername(username) {
     if (!usernameRegex.test(username)) {
         return "Le nom d'utilisateur ne doit contenir que des lettres ou des chiffres.";
     }
+    return undefined;
 }
 
 
@@ -56,19 +57,16 @@ function checkEmail(email) {
  * checkPassword("123456!a"); // undefined
 
  * // Invalid passwords
- * checkPassword("12345"); // "Le mot de passe doit faire au moins 6 caractères."
+ * checkPassword("12345"); // "Le mot de passe doit faire entre 6 et 100 caractères."
  * checkPassword("abcde"); // "Le mot de passe doit contenir au moins 1 chiffre."
  * checkPassword("abcdef!"); // "Le mot de passe doit contenir au moins 1 chiffre."
- * checkPassword("1a"); // "Le mot de passe doit faire au moins 6 caractères."
- * checkPassword("Pass1"); // "Le mot de passe doit faire au moins 6 caractères."
- * checkPassword("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz123!"); // "Le mot de passe ne doit pas dépasser 100 caractères."
+ * checkPassword("1a"); // "Le mot de passe doit faire entre 6 et 100 caractères."
+ * checkPassword("Pass1"); // "Le mot de passe doit faire entre 6 et 100 caractères."
+ * checkPassword("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz123!"); // "Le mot de passe doit faire entre 6 et 100 caractères."
  */
 function checkPassword(password) {
-    if (password.length < 6) {
-        return "Le mot de passe doit faire au moins 6 caractères.";
-    }
-    if (password.length > 100) {
-        return "Le mot de passe ne doit pas dépasser 100 caractères.";
+    if (password.length < 6 || password.length > 100) {
+        return "Le mot de passe doit faire entre 6 et 100 caractères.";
     }
 
     if (!/[a-zA-Z]/.test(password)) {
@@ -112,10 +110,12 @@ function checkPasswords(password, passwordConfirmation) {
 
 
 function getPasswordScore(password) {
-    if(password.length > 9 && numberPattern.test(password) && specialCharacters.test(password)) {
+    const hasNumber = numberPattern.test(password);
+    const hasSpecialChar = specialCharacters.test(password);
+    if(password.length > 9 && (hasNumber && hasSpecialChar)) {
         return 3;
     }
-    if(password.length > 6 && (numberPattern.test(password) || specialCharacters.test(password))) {
+    if(password.length > 6 && (hasNumber || hasSpecialChar)) {
         return 2;
     }
     return 1;
@@ -123,39 +123,41 @@ function getPasswordScore(password) {
 
 
 function checkRegister() {
-    const $usernameInput = document.getElementById("username");
-    const $emailInput = document.getElementById("email");
-    const $passwordInput = document.getElementById("password");
-    const $confirmPasswordInput = document.getElementById("confirm-password");
+    const inputs = {
+        username: document.getElementById("username"),
+        email: document.getElementById("email"),
+        password: document.getElementById("password"),
+        confirmPassword: document.getElementById("confirm-password"),
+    };
 
-    const usernameValue = $usernameInput.value.trim()
-    const emailValue = $emailInput.value.trim()
-    const passwordValue = $passwordInput.value.trim()
-    const confirmPasswordValue = $confirmPasswordInput.value.trim()
-
-    const response = checkPasswords(passwordValue, confirmPasswordValue)
-    if(response) {
-        return response;
+    const values = {};
+    for (const key in inputs) {
+        values[key] = inputs[key].value.trim();
     }
 
-    const toCheck = {
-        username: [usernameValue, checkUsername],
-        email: [emailValue, checkEmail],
-        password: [passwordValue, checkPassword],
+    const { username, email, password, confirmPassword } = values;
+
+    const response = checkPasswords(password, confirmPassword);
+    if (response) return response;
+
+    const validators = {
+        username: checkUsername,
+        email: checkEmail,
+        password: checkPassword,
+    };
+
+    for (const key in validators) {
+        const response = validators[key](values[key]);
+        if (response) return response;
     }
 
-    for(const [value, checker] of Object.values(toCheck)) {
-        const response = checker(value)
-        if(response) {
-            return response;
-        }
-    }
     return {
-        username: usernameValue,
-        email: emailValue,
-        passwords: passwordValue
+        username,
+        email,
+        passwords: password,
     };
 }
+
 
 
 export {

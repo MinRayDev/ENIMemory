@@ -2,45 +2,43 @@ const gameSets = {
     "alphabet": {
         "ext": "png",
         "count": 26,
-        "display_name": "Alphabet"
+        "displayName": "Alphabet"
     },
     "animals": {
         "ext": "webp",
         "count": 28,
-        "display_name": "Animaux"
+        "displayName": "Animaux"
     },
     "anime_animals": {
         "ext": "webp",
         "count": 8,
-        "display_name": "Animaux Dessinés"
+        "displayName": "Animaux Dessinés"
     },
     "dinosaurs": {
         "ext": "jpg",
         "count": 10,
-        "display_name": "Dinosaurs"
+        "displayName": "Dinosaurs"
     },
     "dogs": {
         "ext": "webp",
         "count": 23,
-        "display_name": "Chiens"
+        "displayName": "Chiens"
     },
     "named_dinosaurs": {
         "ext": "jpg",
         "count": 10,
-        "display_name": "Dinosaurs Nommés"
+        "displayName": "Dinosaurs Nommés"
     },
     "pets": {
         "ext": "jpg",
         "count": 10,
-        "display_name": "Animaux de Compagnie"
+        "displayName": "Animaux de Compagnie"
     },
     "vegetables": {
         "ext": "svg",
         "count": 6,
-        "display_name": "Légumes et Fruits"
+        "displayName": "Légumes et Fruits"
     }
 }
 
-export {
-    gameSets
-}
+export { gameSets }

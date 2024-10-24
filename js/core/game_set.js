@@ -1,5 +1,5 @@
-import {gameSets} from "./references.js";
-import {game} from "./game.js";
+import { gameSets } from "./references.js";
+import { game } from "./game.js";
 
 /**
  * Represents a game card.
@@ -11,7 +11,6 @@ class GameCard {
      * @param {string} idx - The index of the card in the set.
      * @param {string} id - The unique identifier for the card.
      * @param {string} path - The path to the image associated with the card.
-     *
      */
     constructor(idx, id, path) {
         this.idx = idx;
@@ -22,41 +21,46 @@ class GameCard {
         this.found = false;
     }
 
+    canBeSelected() {
+        return game.selections.length < 2 && !this.found && !game.selections.includes(this.id);
+    }
+
     setSelected() {
-        if(game.selections.length >= 2 || this.found || game.selections.includes(this.id)) {
-            return false;
+        if (this.canBeSelected()) {
+            game.selections.push(this.id);
+            this.selected = true;
+            this.updateCardDisplay(true);
+            return true;
         }
-        game.selections.push(this.id);
-        this.selected = true;
+        return false;
+    }
+
+    updateCardDisplay(isSelected) {
         const $selfCard = document.getElementById(this.id);
-        if($selfCard) {
-            $selfCard.classList.add("card-selected");
-            $selfCard.parentElement.classList.remove("card-hide")
+        if ($selfCard) {
+            $selfCard.classList.toggle("card-selected", isSelected);
+            if (isSelected) {
+                $selfCard.parentElement.classList.remove("card-hide");
+            }
         }
-        return true;
     }
 
     static setUnSelected(id) {
         const $selfCard = document.getElementById(id);
-        if($selfCard) {
-            if(!game.grid[id].found) {
+        if ($selfCard) {
+            if (!game.grid[id].found) {
                 $selfCard.classList.add('hideAnimation');
                 $selfCard.parentElement.classList.add('hideAnimation');
+
                 $selfCard.addEventListener('animationend', () => {
                     $selfCard.classList.remove('hideAnimation');
                     $selfCard.parentElement.classList.remove('hideAnimation');
-                    $selfCard.parentElement.classList.add("card-hide")
+                    $selfCard.parentElement.classList.add("card-hide");
                     $selfCard.classList.remove("card-selected");
-                    const idIndex = game.selections.indexOf(id);
-                    if(idIndex > -1) {
-                        game.selections.splice(idIndex, 1);
-                    }
+                    game.selections = game.selections.filter(selectedId => selectedId !== id);
                 }, { once: true });
             } else {
-                const idIndex = game.selections.indexOf(id);
-                if (idIndex > -1) {
-                    game.selections.splice(idIndex, 1);
-                }
+                game.selections = game.selections.filter(selectedId => selectedId !== id);
             }
         }
         game.grid[id].selected = false;
@@ -66,7 +70,7 @@ class GameCard {
         this.found = true;
         const $selfCard = document.getElementById(this.id);
         $selfCard.classList.add("card-found");
-        GameCard.setUnSelected(this.id)
+        GameCard.setUnSelected(this.id);
         game.found++;
     }
 
@@ -83,7 +87,6 @@ class GameCard {
     }
 }
 
-
 /**
  * Loads a set of game cards based on the specified type.
  *
@@ -91,7 +94,7 @@ class GameCard {
  * @returns {GameCard[] | undefined} An array of GameCard objects for the specified game set. If the `type` doesn't exist in `gameSets`, it returns `undefined`.
  */
 function loadSet(type) {
-    if (type in gameSets) {
+    if (gameSets[type]) {
         const cards = [];
         for (let i = 1; i <= gameSets[type].count; i++) {
             const card = new GameCard(i, `${i}o`, `../assets/cards/${type}/${i}.${gameSets[type].ext}`);
@@ -101,24 +104,21 @@ function loadSet(type) {
     }
 }
 
-
 /**
- * Twice the size of the original array. (Copying the array and adding the same card twice)
+ * Doubles the size of the original array by adding each card twice.
+ *
+ * Solution inspired by https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap
  *
  * @param {GameCard[]} cards - The array of GameCard objects to double.
- * @returns {GameCard[]} A new array with the same cards as the original array, but with each card added twice.
+ * @returns {GameCard[]} A new array with each card added twice.
  */
 function doubleCards(cards) {
-    const newCards = [];
-    for (const element of cards) {
-        const oldCard = element;
-        const newCard = new GameCard(oldCard.idx, `${oldCard.idx}c`, oldCard.path);
-        oldCard.link = newCard.id
-        newCard.link = oldCard.id
-        newCards.push(oldCard)
-        newCards.push(newCard)
-    }
-    return newCards;
+    return cards.flatMap(card => {
+        const newCard = new GameCard(card.idx, `${card.idx}c`, card.path);
+        card.link = newCard.id;
+        newCard.link = card.id;
+        return [card, newCard];
+    });
 }
 
 /**
@@ -129,10 +129,7 @@ function doubleCards(cards) {
  * @param {GameCard[]} cards - The array of GameCard objects to shuffle.
  * @returns {GameCard[]} A new array with the same cards as the original array, but in a random order.
  */
-function shuffle(cards) {
-    cards.sort(() => Math.random() - 0.5);
-    return cards;
-}
+const shuffle = (cards) => cards.sort(() => Math.random() - 0.5);
 
 export {
     loadSet,

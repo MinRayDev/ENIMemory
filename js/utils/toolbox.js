@@ -6,16 +6,12 @@
  * @returns {string} The name of the currently loaded HTML file.
  *
  * @example
- * // If the current URL is 'http://example.com/index.html'
+ * // If the current URL is 'https://example.com/index.html'
  * const fileName = getCurrentHtml(); // Returns 'index'
  */
-function getCurrentHtml() {
-    return window.location.pathname.split("/").pop().split(".").slice(0, -1).join(".");
-}
+const getCurrentHtml = () => window.location.pathname.split("/").pop().split(".").slice(0, -1).join(".");
 
-function redirect(page) {
-    window.location.href = `./${page}.html`;
-}
+const redirect = (page) => window.location.href = `./${page}.html`;
 
 function computeGrid(length) {
     // Mental breakdown (took me 1h)
@@ -24,17 +20,26 @@ function computeGrid(length) {
     const minY = 2;
     // Avoiding overflows and underflows (i don't want more than 6 columns per row)
     const maxX = Math.min(Math.max(length / minX, minX), 6);
+    const maxY = Math.floor(length / minY)
 
+    // Columns
     for (let i = minX; i <= maxX; i++) {
-        for (let j = minY; j <= length / minY; j++) {
+        // Rows
+        for (let j = minY; j <= maxY; j++) {
+            // Compute x & y (> 2)
             const x = Math.max(Math.min(i, length - j), minX);
             const y = Math.max(Math.min(j, length - i), minY);
+
+            // Compute factor (+z) (Rest, if length = 5, will be [2, 2, 0])
             const factor = length - (x * y);
-            if (factor >= 0 && factor < x && y <= length/3) {
+
+            // Keep it only if factor is positive and smaller than x and y smaller than a bound (to avoid 2 giants columns)
+            if (factor >= 0 && factor < x && y <= length / 3) {
                 results.push([x, y, factor]);
             }
         }
     }
+
     return results;
 }
 

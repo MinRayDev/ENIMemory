@@ -33,7 +33,7 @@ export function load() {
         for (const [key, value] of Object.entries(gameSets)) {
             const $option = document.createElement("option");
             $option.value = key
-            $option.textContent = value["display_name"];
+            $option.textContent = value["displayName"];
             $setSelector.appendChild($option);
         }
         $setSelector.value = user?.set ?? "vegetables";

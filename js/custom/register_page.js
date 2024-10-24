@@ -9,7 +9,7 @@ import {
 import {closeModal, openModal, timedModal} from "../components/modal.js";
 import {addUser, User} from "../core/users.js";
 import {redirect} from "../utils/toolbox.js";
-import {setError, setIdle, setSuccess} from "../components/register_input.js";
+import {setError, setIdle, setSuccess} from "../components/form_message.js";
 import {shake} from "../components/glitter.js";
 
 

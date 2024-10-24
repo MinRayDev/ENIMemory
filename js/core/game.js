@@ -3,55 +3,51 @@ import {getId} from "./client.js";
 import {getLocalStorage, setLocalStorage} from "../utils/storage.js";
 
 const game = {
-    "grid": {},
-    "selections": [],
-    "found": 0,
-    "score": 0,
-    "size": null,
-    "set": null
-}
+    grid: {},
+    selections: [],
+    found: 0,
+    score: 0,
+    size: null,
+    set: null
+};
 
-function getScoreboard() {
-    const scoreboard = getLocalStorage("scoreboard", JSON.parse);
-    if(!scoreboard) {
-        return [];
-    }
-    return scoreboard;
-}
-
-function saveScoreboard(newScoreboard) {
-    setLocalStorage("scoreboard", newScoreboard, JSON.stringify);
-}
-
-function saveGame() {
-    const user = User.parseUser(User.getUserById(getId()));
-    const today = new Date()
-    const currentGame = {
+function getCurrentGame(username) {
+    const today = new Date();
+    return {
         "score": game.score,
         "size": game.size,
         "set": game.set,
-        "author": user.name,
-        "date": `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`
+        "author": username,
+        "date": `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`
     }
+}
+
+const getScoreboard = () => getLocalStorage("scoreboard", JSON.parse) ?? [];
+
+const saveScoreboard = (newScoreboard) => setLocalStorage("scoreboard", newScoreboard, JSON.stringify);
+
+
+function saveGame() {
+    const user = User.parseUser(User.getUserById(getId()));
+    const currentGame = getCurrentGame(user.name);
     user.history.unshift(currentGame);
     editUser(getId(), "history", user.toJson().history);
+
     const currentScoreboard = getScoreboard();
-    let shouldAdd = false;
-    if(currentScoreboard.length > 0) {
-        currentScoreboard.forEach(value => {
-            if(value.score <= currentGame.score) {
-                shouldAdd = true;
-            }
-        });
-    } else {
-        shouldAdd = true;
+
+    /* Solution inspired by https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some */
+    const shouldAdd = currentScoreboard.length === 0 || currentScoreboard.some((entry) => entry.score > currentGame.score);
+
+    if (shouldAdd) {
+        currentScoreboard.push(currentGame);
     }
 
-    if(shouldAdd) {
-        currentScoreboard.push(currentGame)
-    }
     currentScoreboard.sort((a, b) => a.score - b.score);
     saveScoreboard(currentScoreboard.slice(0, 5));
 }
 
-export {getScoreboard, saveGame, game}
+export {
+    game,
+    getScoreboard,
+    saveGame
+}

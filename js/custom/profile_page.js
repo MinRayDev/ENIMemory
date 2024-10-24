@@ -56,7 +56,7 @@ function load() {
     for (const [key, value] of Object.entries(gameSets)) {
         const $option = document.createElement("option");
         $option.value = key
-        $option.textContent = value["display_name"];
+        $option.textContent = value["displayName"];
         $setSelector.appendChild($option);
     }
     $setSelector.value = user.set
@@ -86,7 +86,7 @@ function load() {
             openModal(
                 `Partie de ${user.name} le ${value.date}`,
                 `Score: ${value.score}`,
-                `Cartes: ${gameSets[value.set]["display_name"]}, Taille: ${value.size[0]}x${value.size[1]}${supp}`,
+                `Cartes: ${gameSets[value.set]["displayName"]}, Taille: ${value.size[0]}x${value.size[1]}${supp}`,
                 "Fermer",
                 closeModal
             )

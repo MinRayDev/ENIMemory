@@ -1,21 +1,20 @@
 import {isConnected} from "../core/client.js";
 
 function displayNav(current, prefixIndex, prefixPages) {
+    const navContents = {
+        index: "Accueil",
+        profile: isConnected() ? "Profil" : "Se Connecter",
+        game: "Jouer",
+    };
     const $body = document.querySelector(`body`);
-    const navNodes = `
-    <nav>
-        <div id="nav-index" class="nav-content"><a href="${prefixIndex}index.html">Accueil</a></div>
-        <div id="nav-profile" class="nav-content"><a href="${prefixPages}profile.html">${isConnected() ? "Profil" : "Se Connecter"}</a></div>
-        <div id="nav-game" class="nav-content"><a href="${prefixPages}game.html">Jouer</a></div>
-    </nav>
-    `
-    $body.insertAdjacentHTML("afterbegin", navNodes)
-    const $navSelect = document.getElementById(`nav-${current}`);
-    if ($navSelect) {
-        $navSelect.classList.add("selected");
+    const navNode = [`<nav>`]
+    for (const [key, title] of Object.entries(navContents)) {
+        const prefix = key === 'index' ? prefixIndex : prefixPages;
+        const selectClass = key === current ? ' selected' : '';
+        navNode.push(`<div id="nav-${key}" class="nav-content${selectClass}"><a href="${prefix}${key}.html">${title}</a></div>`);
     }
+    navNode.push("</nav>");
+    $body.insertAdjacentHTML("afterbegin", navNode.join(""));
 }
 
-export {
-    displayNav
-}
+export { displayNav }
