@@ -1,17 +1,11 @@
-:root {
-    --shake: 5px;
-}
-
-h1 {
-    text-align: center;
-    margin: 3.5vh;
-}
-
+@import url('../animations.css');
 body {
     height: 100vh;
 }
 
-#register-form, #login-form {
+
+/* Form Content */
+form {
     background-color: var(--surface);
     border-radius: 0.5rem;
     border: 0.1rem solid var(--border);
@@ -23,17 +17,33 @@ body {
     padding: 2vh 0.1vw;
 }
 
-.form-group {
+form button {
+    margin: 0.5rem 0 0;
+}
+
+.link {
+    font-size: 0.9rem;
+    text-align: end;
+    color: var(--link);
+    font-weight: bold;
+    margin: 0 1.5vw 0;
+}
+
+
+/* Form Content > Groups */
+form .input-container {
     display: flex;
     flex-direction: column;
     margin: 0 1.5vw 2vh;
 }
 
-.form-group label {
+form .input-container label {
     margin-bottom: 0.6rem;
 }
 
-.form-group input {
+
+/* Form Content > Groups > Inputs */
+form .input-container input {
     background-color: var(--base);
     border-radius: 0.25vw;
     border: 0.1rem solid var(--border);
@@ -43,95 +53,49 @@ body {
     padding-right: 0.75rem;
 }
 
-.message-container {
+form .input-container input:focus {
+    outline: none;
+    border-color: var(--overlay);
+}
+
+
+/* Form Content > Groups > Messages */
+form .input-container .message-container {
     display: flex;
     align-items: center;
     margin: 0.35rem 0.5rem 0;
 }
 
-.message-container img {
+form .input-container .message-container img {
     margin-right: 0.2rem;
     height: 1.4rem;
 }
 
-.message-container p {
+form .input-container .message-container p {
     margin: 0 0.5rem 0;
     font-size: 0.7rem;
 }
 
-.form-group input:focus {
-    outline: none;
-    border-color: var(--overlay);
-}
-
-.form-group button {
-    margin: 0.5rem 0 0;
-    background-color: var(--overlay);
-    border-radius: 0.25vw;
-    border: 0;
-    height: 2rem;
-    color: var(--text);
-    font-weight: bold;
-}
-
-.form-group button:hover {
-    background-color: var(--overlay-hover);
-    cursor: pointer;
-}
-
-.error-message {
+form .input-container .error-message {
     color: var(--error);
 }
 
-.success-message {
+form .input-container .success-message {
     color: var(--success);
 }
 
-.password-score {
+
+/* Form Content > Score */
+form .password-score hr {
+    width: 5rem;
+    height: 0.3rem;
+    background-color: var(--base);
+}
+
+form .password-score {
     margin: 0 2vw 2vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.score-item {
     text-align: center;
-}
-
-.password-score hr {
-    width: 5rem;
-    height: 0.3rem;
-    border-radius: 0.3rem;
-    background-color: var(--base);
-    border: none;
-    margin: 0;
-}
-
-#weak-score {
-    background-color: #d75c13;
-}
-
-
-/* Solution from https://stackoverflow.com/questions/49469344/using-negative-css-custom-properties */
-@keyframes shake {
-    0% { transform: translate(var(--shake), var(--shake)); }
-    25% { transform: translate(calc(var(--shake) * -1), calc(var(--shake) * -1)); }
-    50% { transform: translate(var(--shake), var(--shake)); }
-    75% { transform: translate(calc(var(--shake) * -1), calc(var(--shake) * -1)); }
-    100% { transform: translate(0, 0); }
-}
-
-.shake {
-    animation: shake 0.5s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 2;
-    overflow: hidden;
-}
-
-#link {
-    font-size: 0.9rem;
-    text-align: end;
-    color: var(--link);
-    font-weight: bold;
-    margin: 0 1.5vw 0;
 }

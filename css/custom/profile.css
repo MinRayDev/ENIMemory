@@ -1,4 +1,5 @@
-#profile {
+/* Global Container */
+#global-container {
     display: flex;
     padding: 0.5vw 3vw;
     margin: auto;
@@ -6,7 +7,74 @@
     justify-content: center;
 }
 
-.historyGame {
+#global-container section {
+    padding: 1rem 1.5rem;
+}
+
+
+/* Global Container > Game Selection */
+#selection-container {
+    display: flex;
+    width: 72.5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+/* Global Container > Game Selection > Interactions */
+#selection-container .selector-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#selection-container .selector-container select {
+    margin-top: 1rem;
+    padding: 0.7rem 0 0.75rem 0.5rem;
+    width: 25%;
+}
+
+/* Global Container > Game Selection > Preview */
+#set-preview {
+    max-width: 40vw;
+    max-height: 75vh;
+}
+
+
+/* Global Container > Profile */
+#profile-container {
+    width: 22.5%;
+    margin-left: 2.5%;
+    display: block;
+}
+
+#profile-container button {
+    width: 100%;
+    margin: 0.5rem 0 0;
+}
+
+#profile-container > h3 {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    font-style: italic;
+    font-weight: normal;
+    color: var(--subtext);
+}
+
+#profile-container hr {
+    height: 0.15rem;
+    background-color: var(--border);
+}
+
+/* Global Container > Profile > History */
+section#history {
+    margin: 0;
+    padding: 0;
+}
+
+/* Global Container > Profile > History > Game history */
+#history .history-game {
     max-width: 10vw;
     max-height: 5vh;
     border-radius: 0.5rem;
@@ -15,97 +83,16 @@
     padding: 0.3rem 0.5rem ;
 }
 
-.historyGame:hover {
+#history .history-game:hover {
     background-color: var(--surface);
     cursor: pointer;
 }
 
-.historyGame h4 {
-    margin: 0;
-}
 
-#set-preview {
-    max-width: 40vw;
-    max-height: 75vh;
-    border-radius: 0.5rem;
-}
 
-#profile > section:first-child select:hover {
-    cursor: pointer;
-    background-color: var(--surface);
-}
 
-#profile > section:first-child select {
-    margin-top: 1rem;
-    padding: 0.7rem 0 0.75rem 0.5rem;
-    width: 25%;
-    background-color: var(--surface);
-    color: azure;
-    border: 0.1rem solid var(--border);
-    border-radius: 0.5rem;
-    outline-style: none;
-    height: 2.75rem;
-}
 
-hr {
-    height: 0.15rem;
-    background-color: var(--border);
-    border-radius: 0.3rem;
-    border: none;
-}
 
-@media (min-width: 769px) {
-    main {
-        margin: 3vw 20vw;
-    }
-    section {
-        padding: 0.75rem 1.5rem;
-        border: 0.0625rem solid var(--border);
-        border-radius: 0.5rem;
-    }
-    #profile > section:first-child {
-        width: 72.5%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-top: 2rem;
-    }
-    #profile > section:first-child div {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-    }
-    #profile > section:nth-child(2) {
-        width: 22.5%;
-        margin-left: 2.5%;
-        display: flex;
-    }
 
-    #profile button {
-        width: 100%;
-        margin: 0.5rem 0 0;
-        background-color: var(--overlay);
-        border-radius: 0.25vw;
-        border: 0;
-        height: 2rem;
-        color: var(--text);
-        font-weight: bold;
-    }
 
-    #profile button:hover {
-        background-color: var(--overlay-hover);
-        cursor: pointer;
-    }
 
-    #profile > section:nth-child(2) > h2  {
-        margin: 0;
-    }
-    #profile > section:nth-child(2) > h3 {
-        margin-top: 0.25rem;
-        margin-bottom: 0.25rem;
-        font-style: italic;
-        font-weight: normal;
-        color: var(--subtext);
-    }
-
-}

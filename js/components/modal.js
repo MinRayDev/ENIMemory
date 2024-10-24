@@ -1,6 +1,6 @@
-function openModal(title, subTitle, message, closeButton = "", buttonAction = null) {
+function openModal(title, subTitle, message, buttonName = "", buttonAction = null) {
     console.log("First message", message)
-    const button = closeButton ? `<button id="modal-close">${closeButton}</button>` : ""
+    const button = buttonName ? `<button id="modal-close">${buttonName}</button>` : ""
     const modalHTML = `
     <div class="modal-container">
         <section class="modal">
@@ -20,7 +20,7 @@ function openModal(title, subTitle, message, closeButton = "", buttonAction = nu
     const $modal = document.querySelector(".modal")
     $modal.parentElement.style.display = "flex";
     $modal.classList.remove("hide");
-    if (closeButton.length > 0 && buttonAction) {
+    if (buttonName.length > 0 && buttonAction) {
         document.querySelector("#modal-close").addEventListener("click", buttonAction, {once: true});
     }
     setTimeout(() => {
@@ -29,11 +29,11 @@ function openModal(title, subTitle, message, closeButton = "", buttonAction = nu
 }
 
 function closeModal() {
-    const $modal = document.querySelector(".modal")
+    const $modal = document.querySelector(".modal");
     $modal.classList.remove("show");
     $modal.classList.add("hide");
     setTimeout(() => {
-        $modal.parentElement.style.display = "none";
+        $modal.parentElement.remove();
     }, 500);
 }
 

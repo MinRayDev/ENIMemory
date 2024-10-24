@@ -11,7 +11,7 @@ function load() {
             supp = ` (+${value.size[2]})`;
         }
         const $tr = document.createElement("tr");
-        $tr.classList.add("sb-element", "sb-row");
+        $tr.classList.add("sb-row");
         $tr.innerHTML = `
         <th>${index + 1}</th>
         <th>

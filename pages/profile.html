@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 	<head>
 		<meta charset="UTF-8">
-		<title>Document</title>
+		<title>Profil</title>
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<link rel="stylesheet" href="../css/style.css">
 		<link rel="stylesheet" href="../css/custom/profile.css">
@@ -10,23 +10,19 @@
 		<meta name="navref" content="profile">
 	</head>
 	<body>
-		<main>
-			<div id="profile">
-				<section>
+		<main class="center-container">
+			<div id="global-container">
+				<section class="container" id="selection-container">
 					<img alt="Card Set Preview" src="" id="set-preview"/>
-					<div>
-						<select id="set-selector"></select>
-					</div>
-					<div>
-						<select id="size-selector"></select>
-					</div>
+					<div class="selector-container"><select id="set-selector"></select></div>
+					<div class="selector-container"><select id="size-selector"></select></div>
 				</section>
-				<section class="hide">
-					<h2 id="username">username</h2>
+				<section class="container" id="profile-container">
+					<h2 id="username" class="mg0">username</h2>
 					<h3 id="email">email</h3>
 					<button id="disconnect">Se déconnecter</button>
 					<hr/>
-					<div id="history"></div>
+					<section id="history"></section>
 				</section>
 			</div>
 		</main>

@@ -1,4 +1,56 @@
+@import url('../animations.css');
+/* Game Selection */
+#selection-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50vw;
+    padding: 2rem;
+    border: 0.0625rem solid var(--border);
+    border-radius: 0.5rem;
+    margin: 3vw 25vw;
+}
 
+/* Game Selection > Interactions */
+#selection-container .selector-container {
+    margin-top: 1.5rem;
+    width: 100%;
+    display: flex;
+    gap: 1.5rem;
+}
+
+#selection-container .selector-container select {
+    padding: 0.7rem 0 0.75rem 0.5rem;
+    width: 50%;
+}
+
+#selection-container .selector-container button {
+    width: 50%;
+    margin: 0.3rem;
+}
+
+/* Game Selection > Preview */
+#set-preview {
+    max-width: 100%;
+    max-height: 75vh;
+    border-radius: 0.5rem;
+}
+
+/* ----- Game ----- */
+
+#game { display: none; }
+
+
+/* Game > Tries */
+#score-container {
+    background-color: var(--surface);
+    border-radius: 0.5rem;
+    border: 0.1rem solid var(--border);
+    padding: 2vh;
+    margin-bottom: 0.5vh;
+}
+
+/* Game > Cards */
 #cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -8,7 +60,8 @@
     justify-content: center;
 }
 
-.card-container {
+/* Game > Cards > Card Container */
+#cards .card-container {
     max-width: 100vw;
     min-width: 10vw;
     max-height: 20vh;
@@ -19,20 +72,24 @@
     border-radius: .7rem;
 }
 
-.card-container:hover {
+/* Game > Cards > Card Container (Hide) */
+#cards .card-container.card-hide {
+    background-color: var(--crust);
+}
+
+/* Game > Cards > Card Container (Hide & Hover) */
+#cards .card-container.card-hide:hover {
     cursor: pointer;
     background-color: var(--crust-hover);
 }
 
-.card-hide {
-    background-color: var(--crust);
-}
+/* Game > Cards > Card Container (Animation) */
+#cards .card-container.showAnimation { animation: cardContainerShowAnimation 0.7s ease; }
 
-.card-hide img {
-    opacity: 0;
-}
+#cards .card-container.hideAnimation { animation: cardContainerShowAnimation 0.7s ease reverse; }
 
-#cards img {
+/* Game > Cards > Card Container > Card */
+#cards .card-container img {
     max-width: 10vw;
     min-width: 10vw;
     max-height: 20vh;
@@ -42,153 +99,23 @@
     padding: 0;
 }
 
-.card-selected {
+/* Game > Cards > Card Container > Card > Selected */
+#cards .card-container img.card-selected {
     background-color: var(--crust-hover);
 }
 
-.card-found {
+/* Game > Cards > Card Container > Card > Found */
+#cards .card-container img.card-found {
     outline: 0.2rem solid var(--success);
-    animation: foundAnimation 0.7s ease forwards;
+    animation: cardFoundAnimation 0.7s ease forwards;
 }
 
-img.showAnimation {
-    animation: appearAnimation 0.7s ease;
-}
-
-img.hideAnimation {
-    animation: appearAnimation 0.7s ease reverse;
-}
-
-div.showAnimation {
-    animation: coverAnimation 0.7s ease;
-}
-
-div.hideAnimation {
-    animation: coverAnimation 0.7s ease reverse;
-}
-
-@keyframes appearAnimation {
-    from {
-        transform: rotateY(-180deg);
-        opacity: 0;
-    }
-    to {
-        transform: rotateY(0deg);
-        opacity: 100%;
-
-    }
-}
-
-@keyframes coverAnimation {
-    from {
-        background-color: var(--crust);
-    }
-    to {
-        background-color: transparent;
-    }
-}
-
-@keyframes foundAnimation {
-    from {
-        opacity: 100%;
-    }
-    to {
-        opacity: 60%;
-    }
-}
-
-.tooltip {
-    position: relative;
-    margin: 2.5vh 2vw 2.5vh 87.5vw;
-}
-
-#tries {
-    background-color: var(--surface);
-    border-radius: 0.5rem;
-    border: 0.1rem solid var(--border);
-    padding: 2vh;
-    margin-bottom: 0.5vh;
-}
-
-
-.tooltip .tooltip-message {
-    visibility: hidden;
+/* Game > Cards > Card Container > Card (Hide) */
+#cards .card-container.card-hide img {
     opacity: 0;
-    transition: opacity 0.2s ease-in-out, visibility 0s 0.2s;
-    background-color: var(--tooltip);
-    color: var(--text);
-    text-align: center;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    padding: 0.4rem;
 }
 
-.tooltip:hover {
-    cursor: pointer;
-}
+/* Game > Cards > Card Container > Card (Animation) */
+#cards .card-container img.showAnimation { animation: cardShowAnimation 0.7s ease; }
 
-.tooltip:hover .tooltip-message {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.2s ease-in-out, visibility 0s 0s;
-}
-
-#game {
-    display: none;
-}
-#set-preview {
-    max-width: 100%;
-    max-height: 75vh;
-    border-radius: 0.5rem;
-}
-#game-selector {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    width: 50vw;
-    padding: 2rem;
-    border: 0.0625rem solid var(--border);
-    border-radius: 0.5rem;
-    margin: 3vw 25vw;
-}
-
-#game-selector div {
-    margin-top: 1.5rem;
-    width: 100%;
-    display: flex;
-    gap: 1.5rem;
-}
-
-#game-selector select:hover {
-    cursor: pointer;
-    background-color: var(--surface);
-}
-
-#game-selector select {
-    padding: 0.7rem 0 0.75rem 0.5rem;
-    width: 50%;
-    height: 2.75rem;
-    background-color: var(--surface);
-    color: azure;
-    border: 0.1rem solid var(--border);
-    border-radius: 0.5rem;
-    outline-style: none;
-}
-
-#game-selector button {
-    width: 50%;
-    background-color: var(--overlay);
-    border-radius: 0.25vw;
-    border: 0;
-    height: 2rem;
-    color: var(--text);
-    font-weight: bold;
-    margin: 0.3rem;
-}
-
-#game-selector button:hover {
-    background-color: var(--overlay-hover);
-    cursor: pointer;
-}
+#cards .card-container img.hideAnimation { animation: cardShowAnimation 0.7s ease reverse; }

@@ -50,10 +50,10 @@ function passwordRegisterChecker() {
             }
         });
         if (score >= 1) {
-            document.getElementById("weak-score").style.backgroundColor = "#d75c13"
+            document.getElementById("weak-score").style.backgroundColor = "var(--weak)"
         }
         if (score >= 2) {
-            document.getElementById("medium-score").style.backgroundColor = "#fff051"
+            document.getElementById("medium-score").style.backgroundColor = "var(--medium)"
         }
         if (score >= 3) {
             document.getElementById("strong-score").style.backgroundColor = "var(--success)"
@@ -72,6 +72,7 @@ function passwordRegisterChecker() {
     }
     $input.addEventListener("input", check);
     $inputConfirm.addEventListener("input", check);
+    check();
 }
 
 function load() {

@@ -5,6 +5,7 @@ import {getId} from "../core/client.js";
 import { User} from "../core/users.js";
 import {computeGrid, redirect} from "../utils/toolbox.js";
 import {gameSets} from "../core/references.js";
+import {shake} from "../components/glitter.js";
 
 
 function win() {
@@ -48,7 +49,7 @@ export function load() {
         },  {"once": true})
         return;
     }
-    document.getElementById("game-selector").style.display = "none";
+    document.getElementById("selection-container").style.display = "none";
     document.getElementById("game").style.display = "block";
     document.querySelector(".tooltip").addEventListener("click", () => {
         redirect("scoreboard")
@@ -59,7 +60,6 @@ export function load() {
             location.reload();
         }
     });
-    // game.set = user?.set ?? "vegetables";
     const cardSet = loadSet(game.set);
     if(!cardSet) {
         console.error("Couldn't load card set");
@@ -83,7 +83,7 @@ export function load() {
     $cardSection.style.gridTemplateRows = `repeat(${game.size[1]}, 1fr)`
     for(const card of cards) {
         game.grid[card.id] = card;
-        document.getElementById("cards").insertAdjacentHTML("beforeend", `<div class="card-container card-hide"><img src="${card.path}" alt="${card.id}" id="${card.id}" draggable="false"></div>`);
+        document.getElementById("cards").insertAdjacentHTML("beforeend", `<div class="card-container card-hide"><img src="${card.path}" alt="${card.id}" id="${card.id}" draggable="false"/></div>`);
         const $card = document.getElementById(card.id);
         $card.addEventListener("click", () => {
             const response = card.setSelected();
@@ -107,6 +107,8 @@ export function load() {
                 if(Object.keys(game.grid).length === game.found) {
                     win()
                 }
+            } else {
+                shake(document.querySelector("body"), "fast-shake");
             }
         });
     }

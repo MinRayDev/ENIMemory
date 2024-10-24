@@ -14,7 +14,7 @@ function setError(id, message) {
     const $messageHolder = document.getElementById(`subto-${id}`);
     $messageHolder.textContent = message;
     $messageHolder.classList.add("error-message");
-    $messageHolder.insertAdjacentHTML("beforebegin", `<img src="../assets/error.svg" alt="error-svg" id="${id}-icon"/>`)
+    $messageHolder.insertAdjacentHTML("beforebegin", `<img src="../assets/error.svg" alt="error-svg" id="${id}-icon" draggable="false"/>`)
 }
 
 function setSuccess(id, message) {
@@ -22,7 +22,7 @@ function setSuccess(id, message) {
     const $messageHolder = document.getElementById(`subto-${id}`);
     $messageHolder.textContent = message;
     $messageHolder.classList.add("success-message")
-    $messageHolder.insertAdjacentHTML("beforebegin", `<img src="../assets/check.svg" alt="check-svg" id="${id}-icon"/>`)
+    $messageHolder.insertAdjacentHTML("beforebegin", `<img src="../assets/check.svg" alt="check-svg" id="${id}-icon" draggable="false"/>`)
 }
 
 export {

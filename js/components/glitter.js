@@ -1,7 +1,7 @@
-function shake($node) {
-    $node.classList.add("shake");
-    $node.addEventListener('animationend', () => {
-        $node.classList.remove('shake');
+function shake($node, type = "shake") {
+    $node.classList.add(type);
+    $node.addEventListener("animationend", () => {
+        $node.classList.remove(type);
     }, { once: true });
 }
 

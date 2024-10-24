@@ -1,27 +1,12 @@
 main {
-    display: flex;
-    padding: 0.5vw 3vw;
-    margin: auto;
-    flex-direction: column;
-    justify-content: center;
+    padding: 1vw 3vw;
 }
 
-main img {
-    border-radius: 1rem;
-    max-width: 90vw;
-    display: block;
-    align-self: center;
+h1 {
+    text-align: left;
+    margin: 0.5vh 0 0 0;
 }
 
-@media (min-width: 769px) {
-    main {
-        border: 0.0625rem solid var(--border);
-        border-radius: 0.5rem;
-        padding: 1vw 3vw;
-        margin: 3vw 20vw;
-    }
-    main img {
-        max-width: 70vw;
-        align-self: center;
-    }
+img {
+    max-width: 70vw;
 }

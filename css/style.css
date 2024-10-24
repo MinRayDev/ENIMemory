@@ -1,3 +1,4 @@
+/* Colors */
 :root {
     --crust: #010409;
     --crust-hover: #15191f;
@@ -9,13 +10,11 @@
     --overlay-hover: #d7417d;
     --border: #313840;
     --error: #f85149;
-    --success: #73c275;
+    --success: #08c708;
+    --weak: #d75c13;
+    --medium: #fff051;
     --link: #4493f8;
     --tooltip: #34383a;
-}
-
-.hide {
-    display: none;
 }
 
 body {
@@ -26,41 +25,114 @@ body {
     margin: 0;
 }
 
+
+/* Nav */
+nav {
+    background-color: var(--crust);
+    display: flex;
+    gap: 1rem;
+    padding: 0 3rem;
+    align-items: normal;
+    justify-content: normal;
+}
+
+/* Nav > Nav Content */
+nav .nav-content {
+    padding: 0.6rem 0.75rem 1rem;
+    margin-top: 0.5rem;
+}
+
+nav .nav-content a {
+    border-radius: 0.35rem;
+    padding: 0.5rem;
+}
+
+nav .nav-content a:hover {
+    background-color: var(--crust-hover);
+    cursor: pointer;
+}
+
+nav .nav-content.selected {
+    border-bottom: 2px solid var(--overlay);
+    padding-bottom: 0.5em;
+}
+
+/* Nodes */
+h1 {
+    text-align: center;
+    margin: 3.5vh;
+}
+
+img {  border-radius: 0.5rem; }
+
+hr {
+    border-radius: 0.3rem;
+    border: none;
+}
+
 a:link, a:visited {
     color: var(--text);
     text-decoration: none;
 }
 
-nav {
-    background-color: #010409;
-    display: flex;
-    gap: 0.4rem;
+/* Nodes > Select */
+select {
+    background-color: var(--surface);
+    color: azure;
+    border: 0.1rem solid var(--border);
+    border-radius: 0.5rem;
+    outline-style: none;
+    height: 2.75rem;
+}
+
+select:hover {
+    cursor: pointer;
+    background-color: var(--surface);
+}
+
+/* Nodes > Button */
+button {
+    background-color: var(--overlay);
+    border-radius: 0.25vw;
+    border: 0;
+    height: 2rem;
+    color: var(--text);
+    font-weight: bold;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: var(--overlay-hover);
+}
+
+
+/* Classes */
+.hide {
+    display: none;
+}
+
+.mg0 {
     margin: 0;
-    padding: 0 1.5rem;
-    justify-content: center;
+}
+
+/* Classes > Containers */
+.container {
+    border: 0.0625rem solid var(--border);
+    border-radius: 0.5rem;
+
+}
+
+.center-container {
+    margin: 3vh 20vw;
+}
+
+.inside-center-container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-nav > div {
-    padding: 0.6rem 0 1rem;
-    margin-top: 0.5rem;
-}
-
-nav a {
-    border-radius: 0.35rem;
-    padding: 0.5rem;
-}
-
-nav a:hover {
-    background-color: var(--crust-hover);
-    cursor: pointer;
-}
-
-nav > div.selected {
-    border-bottom: 2px solid var(--overlay);
-    padding-bottom: 0.5em;
-}
-
+/* Classes > Modal Container */
 .modal-container {
     position: fixed;
     top: 0;
@@ -74,6 +146,7 @@ nav > div.selected {
     justify-content: center;
 }
 
+/* Classes > Modal Container > Modal */
 .modal {
     background-color: var(--surface);
     border-radius: 0.5rem;
@@ -88,6 +161,7 @@ nav > div.selected {
     transition: transform 0.5s ease-out, opacity 0.5s ease-out;
 }
 
+/* Classes > Modal Container > Modal > Animation */
 .modal.show {
     opacity: 100%;
     transform: translateY(0);
@@ -98,6 +172,7 @@ nav > div.selected {
     transform: translateY(-50px);
 }
 
+/* Classes > Modal Container > Modal > Content */
 .modal-content {
     display: flex;
     flex-direction: column;
@@ -110,29 +185,39 @@ nav > div.selected {
 
 .modal button {
     margin: 0.75rem auto 0;
-    background-color: var(--overlay);
-    border-radius: 0.25vw;
-    border: 0;
-    height: 2rem;
-    color: var(--text);
-    font-weight: bold;
     width: 15vw;
 }
 
-.modal button:hover {
-    cursor: pointer;
-    background-color: var(--overlay-hover);
+
+/* Classes > Tooltip */
+.tooltip {
+    position: relative;
+    margin: 2.5vh 2vw 2.5vh 87.5vw;
 }
 
-@media (min-width: 769px) {
-    nav {
-        gap: 1rem;
-        padding: 0 3rem;
-        align-items: normal;
-        justify-content: normal;
-    }
-    nav > div {
-        padding: 0.6rem 0.75rem 1rem;
-    }
+/* Classes > Tooltip > Message */
+.tooltip .tooltip-message {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, visibility 0s 0.2s;
+    background-color: var(--tooltip);
+    color: var(--text);
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    padding: 0.4rem;
+}
+
+/* Classes > Tooltip (Hover) */
+.tooltip:hover {
+    cursor: pointer;
+}
+
+/* Classes > Tooltip > Message (Hover) */
+.tooltip:hover .tooltip-message {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out, visibility 0s 0s;
 }
 

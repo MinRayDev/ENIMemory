@@ -2,8 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 	<head>
 		<meta charset="UTF-8">
-		<title>Document</title>
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>S'inscrire</title>
+		<meta name="viewport"
+			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<link rel="stylesheet" href="../css/style.css">
 		<link rel="stylesheet" href="../css/custom/register.css">
 		<script type="module" src="../js/app.js" defer></script>
@@ -13,52 +14,53 @@
 		<main>
 			<h1>Inscrivez-vous</h1>
 			<form id="register-form">
-				<div class="form-group">
+				<div class="input-container">
 					<label for="username">Nom</label>
-					<input type="text" id="username" name="username" required minlength="3" placeholder="nom123">
+					<input type="text" id="username" name="username" required minlength="3" placeholder="nom123"/>
 					<div class="message-container">
 						<p id="subto-username"></p>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="input-container">
 					<label for="email">Email</label>
-					<input type="email" id="email" name="email" required placeholder="email@exemple.com">
+					<input type="email" id="email" name="email" required placeholder="email@exemple.com"/>
 					<div class="message-container">
 						<p id="subto-email"></p>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="input-container">
 					<label for="password">Mot de passe</label>
-					<input type="password" id="password" name="password" required minlength="6" placeholder="••••••">
+					<input type="password" id="password" name="password" required minlength="6" placeholder="••••••"/>
 					<div class="message-container">
 						<p id="subto-password">Au moins un symbole, un chiffre, ainsi que 6 caractères minimum.</p>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="input-container">
 					<label for="confirm-password">Confirmez le mot de passe</label>
-					<input type="password" id="confirm-password" name="confirm-password" required minlength="6" placeholder="••••••">
+					<input type="password" id="confirm-password" name="confirm-password" required minlength="6"
+						   placeholder="••••••"/>
 					<div class="message-container">
 						<p id="subto-confirm-password"></p>
 					</div>
 				</div>
 				<div class="password-score">
-					<div class="score-item">
-						<hr id="weak-score">
+					<div>
+						<hr id="weak-score" class="mg0">
 						<p>Faible</p>
 					</div>
-					<div class="score-item">
-						<hr id="medium-score">
+					<div>
+						<hr id="medium-score" class="mg0">
 						<p>Moyen</p>
 					</div>
-					<div class="score-item">
-						<hr id="strong-score">
+					<div>
+						<hr id="strong-score" class="mg0">
 						<p>Fort</p>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="input-container">
 					<button type="submit">S'inscrire</button>
 				</div>
-				<a href="login.html" id="link">Se connecter</a>
+				<a href="login.html" class="link">Se connecter</a>
 			</form>
 		</main>
 	</body>

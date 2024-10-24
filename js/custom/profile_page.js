@@ -42,14 +42,10 @@ function load() {
         redirect("login")
     }
     const $disconnectButton = document.getElementById("disconnect");
-    if(isConnected()) {
-        $disconnectButton.addEventListener("click", () => {
-            disconnect();
-            redirect("login")
-        });
-    }
-    document.querySelector("#profile > section:first-child").style.display = "flex";
-    document.querySelector("#profile > section:nth-child(2)").style.display = "block";
+    $disconnectButton.addEventListener("click", () => {
+        disconnect();
+        redirect("login")
+    });
     const user = User.getUserById(getId());
     const $username = document.getElementById("username");
     const $email = document.getElementById("email");
@@ -78,9 +74,9 @@ function load() {
         userHistory = [];
     }
     userHistory.slice(0, 8).forEach(value => {
-        const $div = document.createElement("div");
-        $div.classList.add("historyGame");
-        $div.innerHTML = `<h4>Score ${value.score}</h4><h4>${value.date}</h4>`;
+        const $div = document.createElement("article");
+        $div.classList.add("history-game");
+        $div.innerHTML = `<h4 class="mg0">Score ${value.score}</h4><h4 class="mg0">${value.date}</h4>`;
         $history.appendChild($div);
         $div.addEventListener("click", () => {
             let supp = "";

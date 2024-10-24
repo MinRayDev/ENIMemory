@@ -2,25 +2,24 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Document</title>
-		<meta name="viewport"
-			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>Jeu</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<link rel="stylesheet" href="../css/style.css">
 		<link rel="stylesheet" href="../css/custom/game.css">
 		<script type="module" src="../js/app.js" defer></script>
 	</head>
 	<body>
 		<main>
-			<section id="game-selector">
+			<section id="selection-container" class="container">
 				<img alt="Card Set Preview" src="" id="set-preview"/>
-				<div>
+				<div class="selector-container">
 					<select id="set-selector"></select>
 					<button id="start">Commencer</button>
 				</div>
 			</section>
 			<section id="game">
 				<div class="tooltip">
-					<h2 id="tries">Essais: <span id="score">0</span></h2>
+					<h2 id="score-container">Essais: <span id="score">0</span></h2>
 					<span class="tooltip-message">Cliquez pour voir le tableau des scores.</span>
 				</div>
 				<section id="cards"></section>
