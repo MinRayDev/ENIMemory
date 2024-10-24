@@ -30,7 +30,7 @@ function computeGrid(length) {
             const x = Math.max(Math.min(i, length - j), minX);
             const y = Math.max(Math.min(j, length - i), minY);
             const factor = length - (x * y);
-            if (factor >= 0 && factor <= x && y <= length/3) {
+            if (factor >= 0 && factor < x && y <= length/3) {
                 results.push([x, y, factor]);
             }
         }

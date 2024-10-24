@@ -3,7 +3,7 @@ import {game, saveGame} from "../core/game.js";
 import {openModal} from "../components/modal.js";
 import {getId} from "../core/client.js";
 import {User} from "../core/users.js";
-import {computeGrid} from "../utils/toolbox.js";
+import {computeGrid, redirect} from "../utils/toolbox.js";
 
 
 function win() {
@@ -24,6 +24,9 @@ function incrementScore() {
 }
 
 export function load() {
+    document.querySelector(".tooltip").addEventListener("click", () => {
+        redirect("scoreboard")
+    })
     window.addEventListener("keydown", function(event) {
         if (event.code === "Space") {
             event.preventDefault();

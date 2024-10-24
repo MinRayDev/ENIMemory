@@ -7,7 +7,6 @@ function displayNav(current, prefixIndex, prefixPages) {
         <div id="nav-index"><a href="${prefixIndex}index.html">Accueil</a></div>
         <div id="nav-profile"><a href="${prefixPages}profile.html">${isConnected() ? "Profil" : "Se Connecter"}</a></div>
         <div id="nav-game"><a href="${prefixPages}game.html">Jouer</a></div>
-        <div id="nav-scoreboard"><a href="${prefixPages}scoreboard.html">Scores</a></div>
     </nav>
     `
     $body.insertAdjacentHTML("afterbegin", navNodes)

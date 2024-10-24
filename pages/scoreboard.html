@@ -3,15 +3,28 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Scoreboard</title>
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="viewport"
+			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<link rel="stylesheet" href="../css/style.css">
 		<link rel="stylesheet" href="../css/custom/scoreboard.css">
 		<script type="module" src="../js/app.js" defer></script>
+		<meta name="navref" content="game">
 	</head>
 	<body>
 		<main>
 			<h1>Tableau des scores</h1>
-			<section id="scoreboard"></section>
+			<table id="scoreboard">
+				<thead>
+					<tr>
+						<th>N°</th>
+						<th>Utilisateur</th>
+						<th>Score</th>
+						<th>Date</th>
+						<th>Cartes</th>
+						<th>Taille</th>
+					</tr>
+				</thead>
+			</table>
 		</main>
 	</body>
 </html>

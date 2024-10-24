@@ -2,3 +2,39 @@ h1 {
     text-align: center;
     margin: 3.5vh;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3vh;
+}
+
+section {
+    border: 0.12rem solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0;
+    border-spacing: 30px 10px;
+    width: 50vw;
+}
+
+table {
+    border-spacing: 2rem 1rem;
+    margin: 1vh 0;
+    background-color: var(--surface);
+    border: 0.12rem solid var(--border);
+    border-radius: 0.5rem;
+}
+
+thead {
+    border-bottom: 0.12rem solid var(--border);
+}
+
+tr:hover {
+    cursor: pointer;
+}
+
+.sb-row {
+    color: var(--subtext);
+    font-weight: normal;
+}

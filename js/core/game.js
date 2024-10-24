@@ -54,4 +54,4 @@ function saveGame() {
     saveScoreboard(currentScoreboard.slice(0, 5));
 }
 
-export {saveGame, game}
+export {getScoreboard, saveGame, game}
