@@ -16,8 +16,21 @@ const setIdle = (id, message = "") => setMessage(id, message);
 const setError = (id, message) => setMessage(id, message, "error")
 const setSuccess = (id, message) => setMessage(id, message, "success")
 
+function updateScoreDisplay(score) {
+    ["weak-score", "medium-score", "strong-score"].forEach((id) => {
+        const $score = document.getElementById(id);
+        if ($score) {
+            $score.style.backgroundColor = "var(--base)";
+        }
+    });
+    if (score >= 1) document.getElementById("weak-score").style.backgroundColor = "var(--weak)";
+    if (score >= 2) document.getElementById("medium-score").style.backgroundColor = "var(--medium)";
+    if (score >= 3) document.getElementById("strong-score").style.backgroundColor = "var(--success)";
+}
+
 export {
     setIdle,
     setError,
-    setSuccess
+    setSuccess,
+    updateScoreDisplay
 }

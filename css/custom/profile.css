@@ -38,6 +38,7 @@
 /* Global Container > Game Selection > Preview */
 #set-preview {
     max-width: 40vw;
+    min-width: 40vw;
     max-height: 75vh;
 }
 

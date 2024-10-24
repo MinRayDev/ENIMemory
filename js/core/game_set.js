@@ -1,5 +1,6 @@
 import { gameSets } from "./references.js";
 import { game } from "./game.js";
+import { afterAnimation } from "../utils/toolbox.js";
 
 /**
  * Represents a game card.
@@ -49,16 +50,14 @@ class GameCard {
         const $selfCard = document.getElementById(id);
         if ($selfCard) {
             if (!game.grid[id].found) {
-                $selfCard.classList.add('hideAnimation');
-                $selfCard.parentElement.classList.add('hideAnimation');
-
-                $selfCard.addEventListener('animationend', () => {
-                    $selfCard.classList.remove('hideAnimation');
-                    $selfCard.parentElement.classList.remove('hideAnimation');
-                    $selfCard.parentElement.classList.add("card-hide");
-                    $selfCard.classList.remove("card-selected");
-                    game.selections = game.selections.filter(selectedId => selectedId !== id);
-                }, { once: true });
+                $selfCard.classList.add("hideAnimation");
+                $selfCard.parentElement.classList.add("hideAnimation");
+                afterAnimation($selfCard, () => {
+                        $selfCard.classList.replace("hideAnimation", "card-selected");
+                        $selfCard.parentElement.classList.replace("hideAnimation", "card-hide");
+                        $selfCard.classList.remove();
+                        game.selections = game.selections.filter(selectedId => selectedId !== id);
+                });
             } else {
                 game.selections = game.selections.filter(selectedId => selectedId !== id);
             }
@@ -129,7 +128,7 @@ function doubleCards(cards) {
  * @param {GameCard[]} cards - The array of GameCard objects to shuffle.
  * @returns {GameCard[]} A new array with the same cards as the original array, but in a random order.
  */
-const shuffle = (cards) => cards.sort(() => Math.random() - 0.5);
+const shuffle = (cards) => cards.toSorted(() => Math.random() - 0.5);
 
 export {
     loadSet,

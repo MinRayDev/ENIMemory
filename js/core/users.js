@@ -1,62 +1,52 @@
 import {getLocalStorage, setLocalStorage} from "../utils/storage.js";
 
-class User {
-    constructor(id, name, email, set = "vegetables", size = null, history = []) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.set = set
-        this.size = size;
-        this.history = history;
-    }
 
-    toJson() {
-        return {
-            id: this.id,
-            name: this.name,
-            email: this.email,
-            set: this.set,
-            size: this.size,
-            history: this.history
-        }
-    }
+const createId = (name) => btoa(`${name}-${Date.now()}`);
 
-    static parseUser(jsonObject) {
-        return new User(jsonObject["id"], jsonObject["name"], jsonObject["email"], jsonObject["set"], jsonObject["size"], jsonObject["history"]);
-    }
-
-    static createId(name) {
-        return btoa(`${name}-${Date.now()}`);
-    }
-
-    static getUserById(id) {
-        let localUsers = getLocalStorage("users", JSON.parse);
-        if(localUsers == null) {
-            localUsers = {}
-        }
-        return localUsers[id];
+function parseUser(jsonObject) {
+    return {
+        id: jsonObject.id,
+        name: jsonObject.name,
+        email: jsonObject.email,
+        set: jsonObject.set ?? "vegetables",
+        size: jsonObject.size ?? null,
+        history: jsonObject.history ?? []
     }
 }
 
+function getUserById(id) {
+    let localUsers = getLocalStorage("users", JSON.parse);
+    if(localUsers == null) {
+        localUsers = {}
+    }
+    return parseUser(localUsers[id]);
+}
 
-function addUser(user, password) {
+function addUser(name, email, password) {
     let localUsers = getLocalStorage("users", JSON.parse);
     if(localUsers == null) {
         localUsers = {}
     }
     let response;
     Object.keys(localUsers).forEach((key) => {
-        if(localUsers[key].name === user.name) {
+        if(localUsers[key].name === name) {
             response = "Ce nom est déjà utilisé."
         }
-        if(localUsers[key].email === user.email) {
+        if(localUsers[key].email === email) {
             response = "Cette adresse email est déjà utilisée."
         }
     });
     if (response) { return response; }
-    const userJson = user.toJson();
-    userJson["password"] = password;
-    localUsers[user.id] = userJson;
+    const user = {
+        id: createId(name),
+        name: name,
+        email: email,
+        set: "vegetables",
+        size: null,
+        history: []
+    }
+    user["password"] = password;
+    localUsers[user.id] = user;
     setLocalStorage("users", localUsers, JSON.stringify);
     return response;
 }
@@ -86,7 +76,7 @@ function login(email, password) {
         const localUser = localUsers[key];
         if(localUser.email === email) {
             if(localUser.password === password) {
-                user = User.parseUser(localUser);
+                user = parseUser(localUser);
             }
         }
     });
@@ -95,7 +85,8 @@ function login(email, password) {
 
 
 export {
-    User,
+    createId,
+    getUserById,
     addUser,
     editUser,
     login

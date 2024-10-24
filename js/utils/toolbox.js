@@ -43,9 +43,37 @@ function computeGrid(length) {
     return results;
 }
 
+const onClick = ($node, action, once = false) => $node.addEventListener("click", action, { once: once });
+const onChange = ($node, action, once = false) => $node.addEventListener("change", action, { once: once });
+const onInput = ($node, action, once = false) => $node.addEventListener("input", action, { once: once });
+const afterAnimation = ($node, action, once = true) => $node.addEventListener("animationend", action, { once: once });
+
+function onSubmit($node, action, once = false) {
+    $node.addEventListener("submit", (event) => {
+        event.preventDefault();
+        action();
+    }, { once: once });
+}
+
+function onPress($node, keys, action, once = false) {
+    const keyCodes = keys.map(key => key.toUpperCase());
+    $node.addEventListener("keydown", (event) => {
+        console.log("press", event.code);
+        if (keyCodes.includes(event.code.toUpperCase())) {
+            event.preventDefault();
+            action();
+        }
+    }, { once: once });
+}
 
 export {
     getCurrentHtml,
     redirect,
-    computeGrid
+    computeGrid,
+    onClick,
+    onChange,
+    onInput,
+    afterAnimation,
+    onSubmit,
+    onPress,
 }

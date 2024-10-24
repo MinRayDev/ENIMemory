@@ -1,3 +1,5 @@
+import { onClick } from "../utils/toolbox.js";
+
 function openModal(title, subTitle, message, buttonName = "", buttonAction = null) {
     const buttonHTML = buttonName ? `<button id="modal-close">${buttonName}</button>` : "";
     const modalHTML = `
@@ -19,7 +21,7 @@ function openModal(title, subTitle, message, buttonName = "", buttonAction = nul
         const $modal = document.querySelector(".modal");
         $modal.parentElement.style.display = "flex";
         if (buttonName && buttonAction) {
-            document.querySelector("#modal-close").addEventListener("click", buttonAction, { once: true });
+            onClick(document.querySelector("#modal-close"), buttonAction, true)
         }
 
         setTimeout(() => {

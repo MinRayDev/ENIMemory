@@ -1,6 +1,7 @@
-import {editUser, User} from "./users.js";
+import {editUser, getUserById} from "./users.js";
 import {getId} from "./client.js";
 import {getLocalStorage, setLocalStorage} from "../utils/storage.js";
+import {openModal} from "../components/modal.js";
 
 const game = {
     grid: {},
@@ -10,6 +11,23 @@ const game = {
     size: null,
     set: null
 };
+
+function win() {
+    saveGame();
+    openModal(
+        "Félicitations !",
+        "Vous avez réussi à résoudre le jeu !",
+        "Appuyez sur `espace` pour recommencer.",
+        "Rejouer",
+        () => location.reload()
+    );
+}
+
+function incrementScore() {
+    game.score++;
+    const $score = document.getElementById("score");
+    $score.textContent = `${game.score}`;
+}
 
 function getCurrentGame(username) {
     const today = new Date();
@@ -28,10 +46,10 @@ const saveScoreboard = (newScoreboard) => setLocalStorage("scoreboard", newScore
 
 
 function saveGame() {
-    const user = User.parseUser(User.getUserById(getId()));
+    const user = getUserById(getId());
     const currentGame = getCurrentGame(user.name);
     user.history.unshift(currentGame);
-    editUser(getId(), "history", user.toJson().history);
+    editUser(getId(), "history", user.history);
 
     const currentScoreboard = getScoreboard();
 
@@ -48,6 +66,8 @@ function saveGame() {
 
 export {
     game,
+    win,
+    incrementScore,
     getScoreboard,
     saveGame
 }
