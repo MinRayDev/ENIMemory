@@ -25,9 +25,9 @@ function openModal(title, subTitle, message, buttonName = "", buttonAction = nul
     </div>
     `;
 
-    const $main = document.querySelector('main');
+    const $main = document.querySelector("main");
     if ($main) {
-        $main.insertAdjacentHTML('beforebegin', modalHTML);
+        $main.insertAdjacentHTML("beforebegin", modalHTML);
         const $modal = document.querySelector(".modal");
         $modal.parentElement.style.display = "flex";
         if (buttonName && buttonAction) {

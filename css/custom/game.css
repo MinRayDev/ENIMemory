@@ -1,4 +1,4 @@
-@import url('../animations.css');
+@import url("../animations.css");
 /* Game Selection */
 #selection-container {
     display: flex;

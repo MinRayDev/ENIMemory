@@ -45,9 +45,9 @@ function load() {
         $card.addEventListener("click", () => {
             const response = card.setSelected();
             if (response) {
-                $card.classList.add('showAnimation');
-                $card.parentElement.classList.add('showAnimation');
-                afterAnimation($card, () => { $card.classList.remove('showAnimation'); $card.parentElement.classList.remove('showAnimation') });
+                $card.classList.add("showAnimation");
+                $card.parentElement.classList.add("showAnimation");
+                afterAnimation($card, () => { $card.classList.remove("showAnimation"); $card.parentElement.classList.remove("showAnimation") });
                 if (card.bothFound()) {
                     card.setFound();
                     card.setLinkFound();

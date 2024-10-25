@@ -108,7 +108,15 @@ function checkPasswords(password, passwordConfirmation) {
     return checkPassword(password);
 }
 
-
+/**
+ * Returns a score based on the password strength.
+ *
+ * @param {string} password - The password to evaluate.
+ * @returns {number} - Password strength score:
+ *                     3 = Strong (length > 9, includes number and special character),
+ *                     2 = Medium (length > 6, includes number or special character),
+ *                     1 = Weak (does not meet above criteria).
+ */
 function getPasswordScore(password) {
     const hasNumber = numberPattern.test(password);
     const hasSpecialChar = specialCharacters.test(password);
@@ -122,6 +130,11 @@ function getPasswordScore(password) {
 }
 
 
+/**
+ * Validates registration form inputs for username, email, and password (checks that passwords match).
+ *
+ * @returns {Object|string} - Returns an object containing `username`, `email`, and `passwords` if all inputs are valid, or a string containing an error message if any input is invalid.
+ */
 function checkRegister() {
     const inputs = {
         username: document.getElementById("username"),

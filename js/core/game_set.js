@@ -22,10 +22,20 @@ class GameCard {
         this.found = false;
     }
 
+    /**
+     *
+     * @returns {boolean} - Returns `true` if the item can be selected, otherwise, `false`.
+     */
     canBeSelected() {
         return game.selections.length < 2 && !this.found && !game.selections.includes(this.id);
     }
 
+    /**
+     *
+     * Set card as selected if it can be selected (using `canBeSelected()`).
+     *
+     * @returns {boolean} - Returns `true` if the item is successfully selected, otherwise returns `false` if it cannot be selected.
+     */
     setSelected() {
         if (this.canBeSelected()) {
             game.selections.push(this.id);

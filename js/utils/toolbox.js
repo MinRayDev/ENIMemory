@@ -6,13 +6,24 @@
  * @returns {string} The name of the currently loaded HTML file.
  *
  * @example
- * // If the current URL is 'https://example.com/index.html'
- * const fileName = getCurrentHtml(); // Returns 'index'
+ * // If the current URL is "https://example.com/index.html"
+ * const fileName = getCurrentHtml(); // Returns "index"
  */
 const getCurrentHtml = () => window.location.pathname.split("/").pop().split(".").slice(0, -1).join(".");
 
+/**
+ * Redirects to a page.
+ *
+ * @param {string} page - The name of the page (without ext).
+ */
 const redirect = (page) => window.location.href = `./${page}.html`;
 
+/**
+ * Computes mutiple way to organize elements through x columns and y rows with a remainder if needed.
+ *
+ * @param {number} length - Number of elements.
+ * @returns {Array<[number, number, number]>} - Array of possible grid configurations ([columns (x), rows (y), remainder (factor)]).
+ */
 function computeGrid(length) {
     // Mental breakdown (took me 1h)
     const results = [];
@@ -43,11 +54,36 @@ function computeGrid(length) {
     return results;
 }
 
+/**
+ * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {Function} action - The function to execute when the event is triggered.
+ * @param {boolean} [once=false] - Whether the event listener should be removed after the first execution.
+ */
 const onClick = ($node, action, once = false) => $node.addEventListener("click", action, { once: once });
+/**
+ * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {Function} action - The function to execute when the event is triggered.
+ * @param {boolean} [once=false] - Whether the event listener should be removed after the first execution.
+ */
 const onChange = ($node, action, once = false) => $node.addEventListener("change", action, { once: once });
+/**
+ * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {Function} action - The function to execute when the event is triggered.
+ * @param {boolean} [once=false] - Whether the event listener should be removed after the first execution.
+ */
 const onInput = ($node, action, once = false) => $node.addEventListener("input", action, { once: once });
+/**
+ * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {Function} action - The function to execute when the event is triggered.
+ * @param {boolean} [once=true] - Whether the event listener should be removed after the first execution.
+ */
 const afterAnimation = ($node, action, once = true) => $node.addEventListener("animationend", action, { once: once });
 
+/**
+ * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {Function} action - The function to execute when the event is triggered.
+ * @param {boolean} [once=false] - Whether the event listener should be removed after the first execution.
+ */
 function onSubmit($node, action, once = false) {
     $node.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -55,6 +91,12 @@ function onSubmit($node, action, once = false) {
     }, { once: once });
 }
 
+/**
+ * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {Function} action - The function to execute when the event is triggered.
+ * @param {Array<string>} keys - The keys to listen to.
+ * @param {boolean} [once=false] - Whether the event listener should be removed after the first execution.
+ */
 function onPress($node, keys, action, once = false) {
     const keyCodes = keys.map(key => key.toUpperCase());
     $node.addEventListener("keydown", (event) => {

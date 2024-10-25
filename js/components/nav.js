@@ -13,11 +13,11 @@ function displayNav(current, prefixIndex, prefixPages) {
         profile: isConnected() ? "Profil" : "Se Connecter",
         game: "Jouer",
     };
-    const $body = document.querySelector(`body`);
-    const navNode = [`<nav>`]
+    const $body = document.querySelector("body");
+    const navNode = ["<nav>"]
     for (const [key, title] of Object.entries(navContents)) {
-        const prefix = key === 'index' ? prefixIndex : prefixPages;
-        const selectClass = key === current ? ' selected' : '';
+        const prefix = key === "index" ? prefixIndex : prefixPages;
+        const selectClass = key === current ? " selected" : '';
         navNode.push(`<div id="nav-${key}" class="nav-content${selectClass}"><a href="${prefix}${key}.html">${title}</a></div>`);
     }
     navNode.push("</nav>");
