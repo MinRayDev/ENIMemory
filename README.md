@@ -4,6 +4,8 @@
 
 Just a small memory game made in vanilla HTML, CSS, and JavaScript.
 
+All data are stored in the browser's local storage.
+
 ## Features
 
 - User registration
