@@ -24,15 +24,9 @@ function load() {
     onClick(document.querySelector(".tooltip"), () => redirect("scoreboard"));
     onPress(window, ["space"], () => { location.reload(); });
     const cardSet = loadSet(game.set);
-    if (!cardSet) {
-        console.error("Couldn't load card set");
-        return;
-    }
+    if (!cardSet) return;
     const cards = shuffle(doubleCards(cardSet));
-    if (!cards) {
-        console.error("Couldn't shuffle cards");
-        return;
-    }
+    if (!cards) return;
     const userSize = user?.size;
     if (userSize) {
         game.size = JSON.parse(user.size);

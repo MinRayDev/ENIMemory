@@ -1,5 +1,15 @@
 import { onClick } from "../utils/toolbox.js";
 
+/**
+ * Opens a modal.
+ *
+ * @param {string} title - The title of the modal.
+ * @param {string} subTitle - The subtitle (below the title).
+ * @param {string} message - The main message of the modal.
+ * @param {string} [buttonName=""] - Optional button text. If empty, no button is displayed.
+ * @param {function|null} [buttonAction=null] - Optional function executed when the button is clicked.
+ *
+ */
 function openModal(title, subTitle, message, buttonName = "", buttonAction = null) {
     const buttonHTML = buttonName ? `<button id="modal-close">${buttonName}</button>` : "";
     const modalHTML = `
@@ -30,6 +40,9 @@ function openModal(title, subTitle, message, buttonName = "", buttonAction = nul
     }
 }
 
+/**
+ * Closes the current modal and remove it.
+ */
 function closeModal() {
     const $modal = document.querySelector(".modal");
     if (!$modal) {

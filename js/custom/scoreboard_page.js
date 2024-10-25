@@ -25,7 +25,7 @@ function load() {
                 openModal(
                     `Partie de ${value.author} le ${value.date}`,
                     `Score: ${value.score}`,
-                    `Cartes: ${gameSets[value.set]["displayName"]}, Taille: ${value.size[0]}x${value.size[1]}${supp}`,
+                    `Cartes: ${gameSets[value.set]["displayName"]}, Taille: ${value.size[0]}x${value.size[1]}${sizeSupplement}`,
                     "Fermer",
                     closeModal
                 );

@@ -3,6 +3,14 @@ import {computeGrid, onChange} from "../utils/toolbox.js";
 import {editUser, getUserById} from "../core/users.js";
 import {getId} from "../core/client.js";
 
+
+/**
+ * Loads a <select> element with game sets and a preview image.
+ *
+ * @param {string} defaultValue - The default value to set as selected in the dropdown.
+ * @param {function|null} changeCallback - Optional callback function (change).
+ * @returns {HTMLSelectElement} - Returns <select> element.
+ */
 function loadSetSelector(defaultValue, changeCallback) {
     const $setSelector = document.getElementById("set-selector");
     const $previewImage = document.getElementById("set-preview");
@@ -24,6 +32,11 @@ function loadSetSelector(defaultValue, changeCallback) {
     return $setSelector;
 }
 
+/**
+ * Loads a <select> element with sizes.
+ *
+ * @param {boolean} [eventLoad=true] - If the function is called by an event listener or not.
+ */
 function loadSizeSelector(eventLoad = true) {
     const user = getUserById(getId());
     const $sizeSelector = document.getElementById("size-selector");

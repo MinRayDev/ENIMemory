@@ -6,7 +6,7 @@ const gameSets = {
     },
     "animals": {
         "ext": "webp",
-        "count": 28,
+        "count": 27,
         "displayName": "Animaux"
     },
     "anime_animals": {

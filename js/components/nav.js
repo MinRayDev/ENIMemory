@@ -1,5 +1,12 @@
 import {isConnected} from "../core/client.js";
 
+/**
+ * Displays a navigation menu based on the current page and if current user is connected.
+ *
+ * @param {string} current - The key of the current page to highlight.
+ * @param {string} prefixIndex - The URL prefix for the index (home) page.
+ * @param {string} prefixPages - The URL prefix for other pages.
+ */
 function displayNav(current, prefixIndex, prefixPages) {
     const navContents = {
         index: "Accueil",
