@@ -55,32 +55,32 @@ function computeGrid(length) {
 }
 
 /**
- * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {HTMLElement} $node - The DOM element to attach the event listener to.
  * @param {Function} action - The function to execute when the event is triggered.
  * @param {boolean} [once=false] - Whether the event listener should be removed after the first execution.
  */
 const onClick = ($node, action, once = false) => $node.addEventListener("click", action, { once: once });
 /**
- * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {HTMLElement} $node - The DOM element to attach the event listener to.
  * @param {Function} action - The function to execute when the event is triggered.
  * @param {boolean} [once=false] - Whether the event listener should be removed after the first execution.
  */
 const onChange = ($node, action, once = false) => $node.addEventListener("change", action, { once: once });
 /**
- * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {HTMLElement} $node - The DOM element to attach the event listener to.
  * @param {Function} action - The function to execute when the event is triggered.
  * @param {boolean} [once=false] - Whether the event listener should be removed after the first execution.
  */
 const onInput = ($node, action, once = false) => $node.addEventListener("input", action, { once: once });
 /**
- * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {HTMLElement} $node - The DOM element to attach the event listener to.
  * @param {Function} action - The function to execute when the event is triggered.
  * @param {boolean} [once=true] - Whether the event listener should be removed after the first execution.
  */
 const afterAnimation = ($node, action, once = true) => $node.addEventListener("animationend", action, { once: once });
 
 /**
- * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {HTMLElement} $node - The DOM element to attach the event listener to.
  * @param {Function} action - The function to execute when the event is triggered.
  * @param {boolean} [once=false] - Whether the event listener should be removed after the first execution.
  */
@@ -92,7 +92,7 @@ function onSubmit($node, action, once = false) {
 }
 
 /**
- * @param {HTMLElement} $node - The DIL element to attach the event listener to.
+ * @param {HTMLElement} $node - The DOM element to attach the event listener to.
  * @param {Function} action - The function to execute when the event is triggered.
  * @param {Array<string>} keys - The keys to listen to.
  * @param {boolean} [once=false] - Whether the event listener should be removed after the first execution.
