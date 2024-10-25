@@ -3,6 +3,12 @@ import {getLocalStorage, setLocalStorage} from "../utils/storage.js";
 
 const createId = (name) => btoa(`${name}-${Date.now()}`);
 
+
+/**
+ * Parse a user object from a JSON object.
+ * @param {Object} jsonObject - The JSON object to parse.
+ * @returns {{set: string, size: null, name: string, id: string, history: ([]|Array), email: (string)}}
+ */
 function parseUser(jsonObject) {
     return {
         id: jsonObject.id,
@@ -14,12 +20,22 @@ function parseUser(jsonObject) {
     }
 }
 
+/**
+ * @param {string} id - The user ID to retrieve.
+ * @returns {{set: string, size: null, name: string, id: string, history: ([]|Array), email: (string)}}
+ */
 function getUserById(id) {
     let localUsers = getLocalStorage("users", JSON.parse);
     if(localUsers == null) localUsers = {}
     return id ? parseUser(localUsers[id]) : null;
 }
 
+/**
+ * @param {string} name - The username to add.
+ * @param {string} email - The user email to add.
+ * @param {string} password - The user password to add.
+ * @returns {string|null} - Returns an error message if the user already exists, or `null` if the user was successfully added.
+ */
 function addUser(name, email, password) {
     let localUsers = getLocalStorage("users", JSON.parse);
     if(localUsers == null) {
@@ -49,6 +65,13 @@ function addUser(name, email, password) {
     return response;
 }
 
+
+/**
+ * @param {string} userId - The user ID to edit.
+ * @param {string} key - The key to edit.
+ * @param {any} value - The value to edit.
+ * @returns {boolean} - Returns `true` if the user was successfully edited, otherwise returns `false`.
+ */
 function editUser(userId, key, value) {
     let localUsers = getLocalStorage("users", JSON.parse);
     // From Sonar
@@ -62,7 +85,12 @@ function editUser(userId, key, value) {
     return true;
 }
 
-
+/**
+ *
+ * @param {string} email - The user email to use for the login.
+ * @param {string} password - The user password to use for the login.
+ * @returns {Object|null} - Returns the user object if the login is successful, otherwise returns `null`.
+ */
 function login(email, password) {
     let localUsers = getLocalStorage("users", JSON.parse);
     if(localUsers == null) {

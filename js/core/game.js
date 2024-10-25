@@ -12,6 +12,10 @@ const game = {
     set: null
 };
 
+
+/**
+ * Displays a win modal and reloads the page.
+ */
 function win() {
     saveGame();
     openModal(
@@ -23,12 +27,23 @@ function win() {
     );
 }
 
+/**
+ * Increments the score and updates the score display.
+ */
 function incrementScore() {
     game.score++;
     const $score = document.getElementById("score");
     $score.textContent = `${game.score}`;
 }
 
+
+/**
+ *
+ * Returns a JSON object containing the current game information to be saved in the scoreboard.
+ *
+ * @param {string} username - The username of the current user.
+ * @returns {{date: string, score: number, set: string, size: string, author: string}}
+ */
 function getCurrentGame(username) {
     const today = new Date();
     return {
@@ -42,9 +57,18 @@ function getCurrentGame(username) {
 
 const getScoreboard = () => getLocalStorage("scoreboard", JSON.parse) ?? [];
 
+/**
+ * Saves the scoreboard to local storage.
+ *
+ * @param {Array} newScoreboard - The new scoreboard to save.
+ *
+ */
 const saveScoreboard = (newScoreboard) => setLocalStorage("scoreboard", newScoreboard, JSON.stringify);
 
 
+/**
+ * Save the current game to the user's history and update the scoreboard if needed.
+ */
 function saveGame() {
     const user = getUserById(getId());
     const currentGame = getCurrentGame(user.name);
